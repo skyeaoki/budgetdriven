@@ -21,11 +21,14 @@ input:focus {
 }
 
 
+
+
+
 /* Apply pink and semi-bold style */
 .pink, 
 .dollarSign, 
 .active,
-nav a:hover {
+nav button:hover {
     color: #ff66b3;
     font-weight: 600;
 }
@@ -34,10 +37,13 @@ nav a:hover {
 .pinkButton {
     width: 425px;
     background: #ff66b3;
+    font-size: 24px;
     font-weight: 600;
     color: white;
+    padding: 15px 0;
     border: none;
     border-radius: 10px;
+    box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
 }
 
 /* Sign Out button */
@@ -54,15 +60,33 @@ footer {
     border: none;
 }
 
-/* Remove underline from a tags */
-nav a {
-    text-decoration: none;
+
+
+/****** CONTAINER STYLES ******/
+/* Set width of Containers */
+.header,
+.spending,
+.budget,
+.purchasesParent,
+.purchases,
+.newPurchase {
+    width: 425px;
 }
+
+/* White containers with rounded corners & box shadow */
+.budget,
+.purchases,
+.newPurchase  {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
+
+}
+
 
 /****** Auth (Sign in/ Sign Up) ******/
 /* Auth container */
 .auth {
-    width: 425px;
     text-align: center;
     margin: 10% auto 0 auto;
 }
@@ -86,8 +110,6 @@ nav a {
 /* Submit button */
 .auth .pinkButton {
     margin-top: 25px;
-    font-size: 24px;
-    padding: 10px 0;
 }
 
 /* Message for navigating between sign up and sign in */
@@ -106,7 +128,6 @@ nav a {
 /****** Header ******/
 /* Header container */
 .header {
-    width: 425px;
     text-align: center;
     font-size: 20px;
     color: #999999;
@@ -114,7 +135,7 @@ nav a {
 }
 
 .greeting {
-    padding-bottom: 40px;
+    padding-bottom: 30px;
 }
     .greeting p {
         padding-bottom: 10px;
@@ -171,7 +192,7 @@ nav a {
 /* Nav */
 nav {
     clear: both;
-    padding-top: 70px;
+    padding: 55px 0 35px 0;
 }
 
 nav button {
@@ -185,7 +206,7 @@ nav button {
 }
 
 /* Add margin to middle nav button */
-nav a:nth-child(2) button {
+nav button:nth-child(2) {
     margin: 0 45px;
 }
 
@@ -193,15 +214,11 @@ nav a:nth-child(2) button {
 /****** Spending ******/
 /* Spending container */
 .spending {
-    width: 425px;
     text-align: center;
-    margin: 30px auto 80px auto;
+    margin: 0 auto 80px auto;
 }
 
 .spending .pinkButton {
-    font-size: 22px;
-    padding: 15px 0;
-    box-shadow: 0px 3px 5px rgba(204, 204, 204, 1);
     margin: 10px auto 30px auto;
 }
 
@@ -224,7 +241,7 @@ nav a:nth-child(2) button {
     font-weight: 600;
     padding-top: 5px;
 }
-    .categorySpent.dollarSign {
+    .categorySpent .dollarSign {
         font-size: 20px;
         padding-right: 5px;
     }
@@ -234,11 +251,7 @@ nav a:nth-child(2) button {
 /****** New Purchase ******/
 /* New Purchase container */
 .newPurchase {
-    width: 425px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px rgba(230, 230, 230, 1);
-    margin: 30px auto 80px auto;
+    margin: 0 auto 80px auto;
 }
 
 /* Title */
@@ -275,9 +288,7 @@ nav a:nth-child(2) button {
 }
 
 .newPurchase .pinkButton {
-    font-size: 24px;
     margin-top: 20px;
-    padding: 15px 0;
 }
 
 .noPurchases {
@@ -290,12 +301,8 @@ nav a:nth-child(2) button {
 /****** Budget ******/
 /* Budget container */
 .budget {
-    width: 425px;
-    background: white;
     text-align: center;
-    border-radius: 10px;
-    box-shadow: 0px 5px 5px rgba(204, 204, 204, 1);
-    margin: 30px auto 80px auto;
+    margin: 0 auto 80px auto;
 }
 
 .budget h1 {
@@ -312,7 +319,7 @@ nav a:nth-child(2) button {
 }
 
 .budget .dollarSign {
-    font-size: 24px;
+    font-size: 20px;
     padding-right: 5px;
 }
 
@@ -329,27 +336,13 @@ nav a:nth-child(2) button {
     margin-bottom: 50px;
 }
 
-.budget .pinkButton {
-    font-size: 24px;
-    padding: 15px 0;
-}
-
 
 
 /****** Purchases ******/
 /* Purchases Parent container */
 .purchasesParent {
-    width: 425px;
     margin: auto;
-    margin: 30px auto 30px auto;
-}
-
-/* Purchases container */
-.purchases {
-    width: 425px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 5px 5px rgba(204, 204, 204, 1);
+    margin: 0 auto 30px auto;
 }
 
 .purchase {
@@ -403,10 +396,7 @@ nav a:nth-child(2) button {
 
 /* Add Purchase button */
 .purchasesParent .pinkButton {
-    font-size: 24px;
-    padding: 15px 0;
-    box-shadow: 0px 3px 5px rgba(204, 204, 204, 1);
-    margin: 30px auto 80px auto;
+    margin: 0 auto 80px auto;
 }
 
 
@@ -443,7 +433,7 @@ Mobile Styles
     }
 
     /* Adjust margin around middle nav button */
-    nav a:nth-child(2) button {
+    nav button:nth-child(2) {
         margin: 0 30px;
     }
 

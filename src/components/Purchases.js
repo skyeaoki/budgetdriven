@@ -52,7 +52,7 @@ class Purchases extends React.Component {
                         : <p class="noPurchases">No purchases have been added yet.</p>
                     }
                 </div>
-                <a href="newPurchase.html"><button className="pinkButton">Add Purchase</button></a>
+                <button onClick={this.props.navigate} className="pinkButton" value="NewPurchase">Add Purchase</button>
             </div>
         );
     }

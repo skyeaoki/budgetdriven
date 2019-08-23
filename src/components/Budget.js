@@ -42,7 +42,7 @@ class Budget extends React.Component {
             <p>Set your monthly spending budget.</p>
             <form onSubmit={this.handleSubmit}>
                 <label className="dollarSign" htmlFor="budget">$</label>
-                <input type="number" id="budget" name="budget" placeholder={this.state.budget} />
+                <input type="number" id="budget" name="budget" placeholder={this.state.budget} autoFocus={true}/>
                 <button className="pinkButton" type="submit">Submit</button>
             </form>
         </div>

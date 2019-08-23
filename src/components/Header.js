@@ -37,9 +37,9 @@ class Header extends React.Component {
                 </div>
                 
                 <nav>
-                    <a href="spending.html"><button className="active">Spending</button></a>
-                    <a href="purchases.html"><button>Purchases</button></a>
-                    <a href="budget.html"><button>Budget</button></a>
+                    <button onClick={this.props.navigate} className={this.props.page === "Spending" || this.props.page === "NewPurchase" ? "active" : ""} value="Spending">Spending</button>
+                    <button onClick={this.props.navigate} className={this.props.page === "Purchases" ? "active" : ""} value="Purchases">Purchases</button>
+                    <button onClick={this.props.navigate} className={this.props.page === "Budget" ? "active" : ""} value="Budget">Budget</button>
                 </nav>
             </div>
         );

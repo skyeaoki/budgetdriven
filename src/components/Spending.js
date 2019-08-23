@@ -30,7 +30,7 @@ class Spending extends React.Component {
     render() {
         return (
             <div className="spending">
-                <a href="newPurchase.html"><button className="pinkButton">Add Purchase</button></a>
+                <button onClick={this.props.navigate} className="pinkButton" value="NewPurchase"> Add Purchase</button>
                 { this.state.categories.map( category => {
                     return (
                     <div className="category" key={category.name}>

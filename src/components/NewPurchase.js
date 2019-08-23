@@ -52,7 +52,7 @@ class NewPurchase extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="cost">Cost</label><br/>
                     <span className="dollarSign">$</span>
-                    <input className="cost" type="number" id="cost" name="cost" autofocus="true" /><br />
+                    <input className="cost" type="number" id="cost" name="cost" autoFocus={true} /><br />
 
                     <label htmlFor="description">Description</label>
                     <input type="text" id="description" name="description" maxLength="45" />
