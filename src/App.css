@@ -15,9 +15,11 @@ body {
     font-size: 18px;
 }
 
-button:focus {
+button:focus,
+input:focus {
     outline: none;
 }
+
 
 /* Apply pink and semi-bold style */
 .pink, 
@@ -131,15 +133,15 @@ nav a {
         padding-right: 10px;
     }
 
-/* Progress Bar */
-.progressBar { 
+/* Budget Progress Bar */
+.budgetProgressBar { 
 	height: 7px; 
 	position: relative;
 	background: #e6e6e6;
 	border-radius: 5px;
 }
 
-    .progressBar div {
+    .budgetProgressBar div {
         display: block;
         height: 100%;
         background-color: #ff66b3;
@@ -148,7 +150,7 @@ nav a {
         border-radius: 5px;
     }
 
-.progressBarAmounts {
+.budgetProgressBarAmounts {
     color: #333333;
     font-weight: 600;
     padding-top: 20px;
@@ -203,7 +205,7 @@ nav a:nth-child(2) button {
     margin: 10px auto 30px auto;
 }
 
-.spendingByCategory {
+.category {
     background: white;
     font-weight: 600;
     padding: 25px 0;
@@ -212,17 +214,17 @@ nav a:nth-child(2) button {
     box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
 }
 
-.category {
+.categoryName {
     font-size: 22px;
     font-weight: 400;
 }
 
-.spentForCategory {
+.categorySpent {
     font-size: 24px;
     font-weight: 600;
     padding-top: 5px;
 }
-    .spentForCategory .dollarSign {
+    .categorySpent.dollarSign {
         font-size: 20px;
         padding-right: 5px;
     }
@@ -273,15 +275,15 @@ nav a:nth-child(2) button {
 }
 
 .newPurchase .pinkButton {
-    font-size: 22px;
+    font-size: 24px;
     margin-top: 20px;
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .noPurchases {
     color: #999999;
     text-align: center;
-    padding: 20px 0 10px 0;
+    padding: 20px 0 20px 0;
 }
 
 
@@ -329,7 +331,7 @@ nav a:nth-child(2) button {
 
 .budget .pinkButton {
     font-size: 24px;
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 
@@ -401,7 +403,7 @@ nav a:nth-child(2) button {
 
 /* Add Purchase button */
 .purchasesParent .pinkButton {
-    font-size: 22px;
+    font-size: 24px;
     padding: 15px 0;
     box-shadow: 0px 3px 5px rgba(204, 204, 204, 1);
     margin: 30px auto 80px auto;
@@ -447,6 +449,7 @@ Mobile Styles
 
     .newPurchase input, 
     .newPurchase select {
+        background: white;
         width: 200px;
     }
 

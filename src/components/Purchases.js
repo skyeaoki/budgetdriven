@@ -1,44 +1,61 @@
 import React from 'react';
 
 class Purchases extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            purchases: [
+                {
+                    date: "Friday, August 16",
+                    category: "Fast Food",
+                    description: "Whataburger for Hunter & I",
+                    price: 20.33
+                },
+                {
+                    date: "Tuesday, August 13",
+                    category: "Bars & Alcohol",
+                    description: "5 lip tints from Pacifica",
+                    price: 31.95
+                },
+                {
+                    date: "Monday, August 12",
+                    category: "Bars & Alcohol",
+                    description: "2 Long Islands @ the bar",
+                    price: 21.00
+                }
+            ]
+        };
+    }
 
-  render() {
+    render() {
 
-    return (
-        <div className="purchasesParent">
-            <div className="purchases">
-                <div className="purchase">
-                    <div className="purchaseDelete">
-                        <button>x</button>
-                    </div>
-                    <p className="purchaseDate">Friday, August 16</p>
-                    <p className="purchaseCategory">Fast Food</p>
-                    <p className="purchaseDescription">Whataburger for Hunter, Sean, Patty and I. :P</p>
-                    <p className="purchasePrice">$20.33</p>
+        return (
+            <div className="purchasesParent">
+                <div className="purchases">
+                    {   // if the user has purchases show them
+                        this.state.purchases ? (
+                            this.state.purchases.map( (purchase, index) => {
+                                return (
+                                    <div className="purchase" key={index}>
+                                        <div className="purchaseDelete">
+                                            <button>x</button>
+                                        </div>
+                                        <p className="purchaseDate">{purchase.date}</p>
+                                        <p className="purchaseCategory">{purchase.category}</p>
+                                        <p className="purchaseDescription">{purchase.description}</p>
+                                        <p className="purchasePrice">${purchase.price}</p>
+                                    </div>
+                                );
+                            })
+                        )
+                        // otherwise display no purchases message
+                        : <p class="noPurchases">No purchases have been added yet.</p>
+                    }
                 </div>
-                <div className="purchase">
-                    <div className="purchaseDelete">
-                        <button>x</button>
-                    </div>
-                    <p className="purchaseDate">Tuesday, August 13</p>
-                    <p className="purchaseCategory">Shopping</p>
-                    <p className="purchaseDescription">5 lip tints from Pacifica</p>
-                    <p className="purchasePrice">$31.95</p>
-                </div>
-                <div className="purchase">
-                    <div className="purchaseDelete">
-                        <button>x</button>
-                    </div>
-                    <p className="purchaseDate">Monday, August 11</p>
-                    <p className="purchaseCategory">Fast Food</p>
-                    <p className="purchaseDescription">Whataburger for Hunter & I</p>
-                    <p className="purchasePrice">$17.10</p>
-                </div>
+                <a href="newPurchase.html"><button className="pinkButton">Add Purchase</button></a>
             </div>
-            <a href="newPurchase.html"><button className="pinkButton">Add Purchase</button></a>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default Purchases;

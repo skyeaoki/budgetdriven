@@ -1,11 +1,10 @@
 import React from 'react';
 import Header from './Header';
-import Spending from './Spending';
+//import Spending from './Spending';
 //import NewPurchase from './NewPurchase';
 //import Purchases from './Purchases';
-//import Budget from './Budget';
+import Budget from './Budget';
 import Footer from './Footer'
-
 
 
 class Home extends React.Component {
@@ -15,7 +14,7 @@ class Home extends React.Component {
     return (
         <div>
           <Header />
-          <Spending />
+          <Budget />
           <Footer />
         </div>
     );
