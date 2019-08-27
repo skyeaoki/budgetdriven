@@ -152,14 +152,14 @@ footer {
     }
 
 /* Budget Progress Bar */
-.budgetProgressBar { 
+.progressBar { 
 	height: 7px; 
 	position: relative;
-	background: #e6e6e6;
+	background: #d6d6d6;
 	border-radius: 5px;
 }
 
-    .budgetProgressBar div {
+    .progressBar div {
         display: block;
         height: 100%;
         background-color: #ff66b3;
@@ -168,7 +168,7 @@ footer {
         border-radius: 5px;
     }
 
-.budgetProgressBarAmounts {
+.progressBarAmounts {
     color: #333333;
     font-weight: 600;
     padding-top: 20px;
@@ -182,7 +182,7 @@ footer {
         font-weight: 400;
     }
 
-.totalBudget {
+.budgetAmount {
     float: right;
 }
 

@@ -6,26 +6,32 @@ class Budget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            budget: "300.00"
+            budgetAmount: this.props.budgetAmount
         };
     }
 
-    // Handles submission of new budget
-    handleSubmit(e) {
-        const data = new FormData(e.target);
+    // Watch budget input changes
+    onBudgetChange = e => {
+        this.setState({
+            budgetAmount: e.target.value
+        })
+    }
+
+    // Submit new budget
+    handleSubmit2 = e => {
+        e.preventDefault();
 
         // Send budget to API
         axios.put("/api/budget", {
-          budget: data
+            budget: this.state.budgetText
         })
+        // If successful, update the budget amounr in Home state
         .then( res => {
-          console.log(res);
+            this.props.updateBudget(this.state.budgetAmount);
         })
         .catch( err => {
             // If authentication fails
             if(err) {
-                // Do not refresh page 
-                e.preventDefault();
                 // Show error message
                 this.setState({
                     error: true
@@ -34,6 +40,13 @@ class Budget extends React.Component {
         });  
     }
 
+
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.updateBudget(this.state.budgetAmount);
+    }
+
+
     render() {
 
       return (
@@ -41,8 +54,8 @@ class Budget extends React.Component {
             <h1>Budget</h1>
             <p>Set your monthly spending budget.</p>
             <form onSubmit={this.handleSubmit}>
-                <label className="dollarSign" htmlFor="budget">$</label>
-                <input type="number" id="budget" name="budget" placeholder={this.state.budget} autoFocus={true}/>
+                <label className="dollarSign" htmlFor="budgetAmount">$</label>
+                <input onChange={this.onBudgetChange} type="number" id="budgetAmount" name="budgetAmount" step="any" min="0" max="999999" autoFocus={true} required/>
                 <button className="pinkButton" type="submit">Submit</button>
             </form>
         </div>
