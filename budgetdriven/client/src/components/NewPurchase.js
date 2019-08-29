@@ -36,7 +36,7 @@ class NewPurchase extends React.Component {
     }
     
     // Handles form submission
-    handleSubmit2 = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
 
         // Save the form's data in a variable 
@@ -60,27 +60,25 @@ class NewPurchase extends React.Component {
         });  
     }
 
-    handleSubmit = (e) => {
+    handleSubmitTest= (e) => {
         e.preventDefault();
-        // format Date
         let date = new Date(this.state.day + " " + this.state.todaysMonthAndYear);
-        date = moment(date).format('dddd MMMM DD');
-
+        let formattedDate = moment(date).format('dddd MMMM DD');
         let purchase = {
             date: date,
+            formattedDate: formattedDate,
             category: this.state.category,
             description: this.state.description,
             price: parseFloat(this.state.cost)
         };
-        console.log(purchase);
-        //this.props.addPurchase(purchase);
+        this.props.addPurchase(purchase);
     }
 
     render() {
         return (
             <div className="newPurchase">
                 <h1>New Purchase</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmitTest}>
                     <label htmlFor="cost">Cost</label><br/>
                     <span className="dollarSign">$</span>
                     <input onChange={this.handleInputChange} className="cost" type="number" id="cost" name="cost" step="any" min="0.01" max="999999" autoFocus={true} required /><br />

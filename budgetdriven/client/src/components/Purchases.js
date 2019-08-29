@@ -14,7 +14,7 @@ class Purchases extends React.Component {
                                         <div className="purchaseDelete">
                                             <button value={index} onClick={this.props.deletePurchase}>x</button>
                                         </div>
-                                        <p className="purchaseDate">{purchase.date}</p>
+                                        <p className="purchaseDate">{purchase.formattedDate}</p>
                                         <p className="purchaseCategory">{purchase.category}</p>
                                         <p className="purchaseDescription">{purchase.description}</p>
                                         <p className="purchasePrice">${purchase.price}</p>
