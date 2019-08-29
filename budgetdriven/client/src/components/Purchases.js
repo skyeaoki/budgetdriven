@@ -15,7 +15,7 @@ class Purchases extends React.Component {
                                             <button value={index} onClick={this.props.deletePurchase}>x</button>
                                         </div>
                                         <p className="purchaseDate">{purchase.formattedDate}</p>
-                                        <p className="purchaseCategory">{purchase.category}</p>
+                                        <p className="purchaseLocation">{purchase.location}</p>
                                         <p className="purchaseDescription">{purchase.description}</p>
                                         <p className="purchasePrice">${purchase.price}</p>
                                     </div>
@@ -23,10 +23,10 @@ class Purchases extends React.Component {
                             })
                         )
                         // otherwise display no purchases message
-                        : <p class="noPurchases">No purchases have been added yet.</p>
+                        : <p className="noPurchases">You have no purchases so far.</p>
                     }
                 </div>
-                <button onClick={this.props.navigate} className="pinkButton" value="NewPurchase">Add Purchase</button>
+                <button onClick={this.props.navigate} className="pinkButton" value="New Purchase">New Purchase</button>
             </div>
         );
     }

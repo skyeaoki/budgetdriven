@@ -8,24 +8,11 @@ class NewPurchase extends React.Component {
         this.state = {
             todaysMonthAndYear: moment().format('MMMM YYYY'),
             todaysMonth: moment().format('MMMM'),
-            categories: this.props.categories,
             todaysDay: moment().format('DD'),
-            newCategory: false,
             cost: null,
             description: null,
             day: moment().format('DD'),
-            // Set default category value
-            category: this.props.categories[0] || "New Category"
         };
-    }
-
-    handleSelectChange = (e) => {
-        this.setState({
-            // Toggle New Category input
-            newCategory: e.target.value === "New Category",
-            // Store selection
-            category: e.target.value
-        })
     }
 
     // Store the value of the form inputs
@@ -39,15 +26,22 @@ class NewPurchase extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        // Save the form's data in a variable 
-        const data = new FormData(e.target);
+        let date = new Date(this.state.day + " " + this.state.todaysMonthAndYear);
+        let formattedDate = moment(date).format('dddd MMMM DD');
+        let purchase = {
+            date: date,
+            formattedDate: formattedDate,
+            location: this.state.location,
+            description: this.state.description,
+            price: parseFloat(this.state.cost)
+        };
       
         // Send form data to API
         axios.post("/api/newPurchase", {
-            body: data
+            body: purchase
         })
         .then( res => {
-            console.log(res);
+            this.props.addPurchase(purchase);
         })
         .catch( err => {
             // If authentication fails
@@ -67,7 +61,7 @@ class NewPurchase extends React.Component {
         let purchase = {
             date: date,
             formattedDate: formattedDate,
-            category: this.state.category,
+            location: this.state.location,
             description: this.state.description,
             price: parseFloat(this.state.cost)
         };
@@ -79,35 +73,20 @@ class NewPurchase extends React.Component {
             <div className="newPurchase">
                 <h1>New Purchase</h1>
                 <form onSubmit={this.handleSubmitTest}>
-                    <label htmlFor="cost">Cost</label><br/>
+                    <label htmlFor="cost" className="costLabel">Cost</label>
                     <span className="dollarSign">$</span>
-                    <input onChange={this.handleInputChange} className="cost" type="number" id="cost" name="cost" step="any" min="0.01" max="999999" autoFocus={true} required /><br />
+                    <input onChange={this.handleInputChange} className="cost" type="number" id="cost" name="cost" step="0.01" min="0.01" max="999999" autoFocus={true} required /><br />
+
+                    <label htmlFor="location">Location</label>
+                    <input onChange={this.handleInputChange} type="text" id="location" name="location" maxLength="30" required />
 
                     <label htmlFor="description">Description</label>
                     <input onChange={this.handleInputChange} type="text" id="description" name="description" maxLength="45" required />
 
-                    <label htmlFor="date">Date: </label><br />
+                    <label htmlFor="date">Date: </label>
                     <span className="todaysMonth">{this.state.todaysMonth}</span>
                     <input onChange={this.handleInputChange} className="day" type="number" id="day" name="day" min="1" max="31" defaultValue={this.state.todaysDay} required/>
-                    
-                    <label htmlFor="category">Category</label>
-                    <select onChange={this.handleSelectChange} name="category" id="category">
-                        { this.state.categories && (
-                            this.state.categories.map(category => {
-                                return <option key={category}>{category}</option>
-                            })
-                        )}
-                        <option>New Category</option>
-                    </select>
-
-                    {   // Show the New Category input when New Category state is true
-                        this.state.newCategory &&
-                            <div>
-                                <label htmlFor="newCategory">New Category</label>
-                                <input type="text" id="newCategory" name="newCategory" maxLength="30" required />
-                            </div>
-                    }
-
+                    <span className="todaysYear">2019</span>
                     <button type="submit" className="pinkButton">Submit</button>
                 </form>
             </div>

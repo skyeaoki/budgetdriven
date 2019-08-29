@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './Header';
-import Spending from './Spending';
 import NewPurchase from './NewPurchase';
 import Purchases from './Purchases';
 import Budget from './Budget';
@@ -14,46 +13,40 @@ let data = {
         {
             date: new Date("Friday August 16 2019"),
             formattedDate: "Friday, August 16",
-            category: "Fast Food",
-            description: "Whataburger for Hunter & I",
+            location: "Whataburger",
+            description: "Two burgers for Hunter & I",
             price: 20.33
         },
         {
             date: new Date("Monday August 12 2019"),
             formattedDate: "Monday, August 12",
-            category: "Bars & Alcohol :)",
-            description: "2 Long Islands @ the bar",
+            location: "Local Bar",
+            description: "2 Long Islands",
             price: 21.00
         },
         {
             date: new Date("Tuesday August 13 2019"),
             formattedDate: "Tuesday, August 13",
-            category: "Bars & Alcohol",
-            description: "5 lip tints from Pacifica",
+            location: "Pacifica.com",
+            description: "5 lip tints",
             price: 31.95
         },
-    ],
-    categories: ['Groceries', 'Eating Out', 'Bars/Alcohol', 'Miscellaneous'],
+    ]
 };
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: "Spending",
+            page: "Purchases",
             userFirstName: data.userFirstName,
             budgetAmount: data.budgetAmount,
             totalSpent: data.totalSpent,
-            leftToSpend: data.totalSpent <= data.budgetAmount ? Math.round((data.budgetAmount - data.totalSpent) * 100) / 100 : 0,
+            leftToSpend: data.totalSpent <= data.budgetAmount ? data.budgetAmount - data.totalSpent : 0,
             progressBar: data.totalSpent <= data.budgetAmount ? data.totalSpent * 100 / data.budgetAmount : 100,
-            // purchases sorted by most recent
-            purchases: data.purchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) }),
-            categories: data.categories
+            // Purchases sorted by most recent
+            purchases: data.purchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) })
         }
-    }
-
-    componentDidMount() {
-        console.log();
     }
 
     // Handles navigation
@@ -64,6 +57,10 @@ class Home extends React.Component {
         })
     }
 
+    multiplyBy100 = float => {
+        return float * 100
+    }
+
     updateBudget = amount => {
         this.setState({
             budgetAmount: amount
@@ -72,28 +69,36 @@ class Home extends React.Component {
                 // Update progress bar
                 progressBar: this.state.totalSpent <= this.state.budgetAmount ? this.state.totalSpent * 100 / this.state.budgetAmount : 100,
                 // Update left to spend amount
-                leftToSpend: this.state.totalSpent <= this.state.budgetAmount ? Math.round((this.state.budgetAmount - this.state.totalSpent) * 100) / 100: 0,
-                page: "Spending"
+                leftToSpend: this.state.totalSpent <= this.state.budgetAmount ? this.state.budgetAmount - this.state.totalSpent : 0,
+                page: "Purchases"
             })
         });
     }
 
     deletePurchase = e => {
-        let purchase = this.state.purchases[e.target.value];
-        // Remove purchase from purchases array
-        let updatedPurchases = this.state.purchases;
-        updatedPurchases.splice(e.target.value, 1);
+        if(window.confirm("Delete this purchase?")) {
+            let purchase = this.state.purchases[e.target.value];
+            // Remove purchase from purchases array
+            let updatedPurchases = this.state.purchases;
+            updatedPurchases.splice(e.target.value, 1);
 
-        this.setState({
-            // Update purchases
-            purchases: updatedPurchases,
-            // Update total spent
-            totalSpent: this.state.totalSpent - purchase.price,
-            // Update progress bar
-            progressBar: this.state.totalSpent <= this.state.budgetAmount ? (this.state.totalSpent - purchase.price) * 100 / this.state.budgetAmount : 100,
-            // Update left to spend amount
-            leftToSpend: this.state.totalSpent <= this.state.budgetAmount ? Math.round((this.state.budgetAmount - this.state.totalSpent + purchase.price) * 100) / 100: 0
-        })
+            // Calculate total spent and leftToSpend
+            // Turn floats into integers before performing arithmetic to avoid issues in Javascript
+            let totalSpent = ((this.state.totalSpent * 100) - (purchase.price * 100)) / 100;
+            let leftToSpend = ((this.state.leftToSpend * 100) + (purchase.price * 100)) / 100;
+
+            console.log("totalSpent:", this.state.totalSpent, "purchase.price:", purchase.price);
+            this.setState({
+                // Update purchases
+                purchases: updatedPurchases,
+                // Update total spent
+                totalSpent: totalSpent,
+                // Update progress bar
+                progressBar: this.state.totalSpent <= this.state.budgetAmount ? (this.state.totalSpent - purchase.price) * 100 / this.state.budgetAmount : 100,
+                // Update left to spend amount
+                leftToSpend: this.state.totalSpent <= this.state.budgetAmount ? leftToSpend : 0 
+            })
+        }
     }
 
     addPurchase = purchase => {
@@ -103,15 +108,20 @@ class Home extends React.Component {
         // Sort by most recent day
         updatedPurchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) });
 
+        // Calculate total spent and leftToSpend
+        // Turn floats into integers before performing arithmetic to avoid issues in Javascript
+        let totalSpent = ((this.state.totalSpent * 100) + (purchase.price * 100)) / 100;
+        let leftToSpend = ((this.state.leftToSpend * 100) - (purchase.price * 100)) / 100;
+
         this.setState({
             // Update purchases
             purchases: updatedPurchases,
-            // Update total spent
-            totalSpent: this.state.totalSpent + purchase.price,
             // Update progress bar
             progressBar: this.state.totalSpent <= this.state.budgetAmount ? (this.state.totalSpent + purchase.price) * 100 / this.state.budgetAmount : 100,
+            // Update total spent
+            totalSpent: totalSpent,
             // Update left to spend amount
-            leftToSpend: this.state.totalSpent <= this.state.budgetAmount ? Math.round((this.state.budgetAmount - this.state.totalSpent - purchase.price) * 100) / 100: 0,
+            leftToSpend: this.state.totalSpent <= this.state.budgetAmount ? leftToSpend : 0, 
             page: "Purchases"
         })
     }
@@ -132,13 +142,6 @@ class Home extends React.Component {
                     leftToSpend={this.state.leftToSpend}
                 />
 
-                {   // Spending Page
-                    page === "Spending" && (
-                        <Spending 
-                            navigate={this.navigate} 
-                        />  
-                )}
-
                 {   // Purchases Page
                     page === "Purchases" && ( 
                         <Purchases 
@@ -147,6 +150,13 @@ class Home extends React.Component {
                             deletePurchase={this.deletePurchase}
                         /> 
                 )}
+
+                {   // New Purchase page
+                    page === "New Purchase" && (
+                        <NewPurchase 
+                            addPurchase={this.addPurchase}
+                        />
+                )}
             
                 {   // Budget page
                     page === "Budget" &&  (
@@ -154,14 +164,6 @@ class Home extends React.Component {
                         budgetAmount={this.state.budgetAmount}
                         updateBudget={this.updateBudget}
                     />
-                )}
-
-                {   // New Purchase page
-                    page === "NewPurchase" && (
-                        <NewPurchase 
-                            addPurchase={this.addPurchase}
-                            categories={this.state.categories}
-                        />
                 )}
 
                 <Footer />

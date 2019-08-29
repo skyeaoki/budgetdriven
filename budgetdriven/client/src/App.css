@@ -208,152 +208,9 @@ nav button:nth-child(2) {
 }
 
 
-/****** Spending ******/
-/* Spending container */
-.spending {
-    text-align: center;
-    margin: 0 auto 80px auto;
-}
-
-.spending .pinkButton {
-    margin: 10px auto 30px auto;
-}
-
-.category {
-    background: white;
-    font-weight: 600;
-    padding: 25px 0;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
-}
-
-.categoryName {
-    font-size: 22px;
-    font-weight: 400;
-}
-
-.categorySpent {
-    font-size: 24px;
-    font-weight: 600;
-    padding-top: 5px;
-}
-    .categorySpent .dollarSign {
-        font-size: 20px;
-        padding-right: 5px;
-    }
-
-
-
-/****** New Purchase ******/
-/* New Purchase container */
-.newPurchase {
-    margin: 0 auto 80px auto;
-}
-
-/* Title */
-.newPurchase h1 {
-    font-size: 32px;
-    font-weight: 600;
-    padding: 40px 0;
-    text-align: center;
-}
-
-.newPurchase input,
-.newPurchase select {
-    width: 300px;
-    display: block;
-    font-size: 18px;
-    color: #333333;
-    padding: 5px;
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
-    margin: 10px 0 30px 50px;
-}
-
-.newPurchase label {
-    display: block;
-    color: #666666;
-}
-
-.newPurchase label,
-.newPurchase .dollarSign {
-    margin-left: 50px;
-}
-
-.newPurchase .cost {
-    width: 100px;
-    display: inline-block;
-    padding-left: 5px;
-}
-
-.newPurchase .todaysMonth {
-    display: inline;
-    padding: 0 10px 0 50px;
-}
-
-.newPurchase .date {
-    display: inline-block;
-    padding: 5px;
-    width: 50px;
-    margin: 0 auto 30px auto;
-}
-
-.newPurchase .pinkButton {
-    margin-top: 20px;
-}
-
-.noPurchases {
-    color: #999999;
-    text-align: center;
-    padding: 20px 0 20px 0;
-}
-
-
-/****** Budget ******/
-/* Budget container */
-.budget {
-    text-align: center;
-    margin: 0 auto 80px auto;
-}
-
-.budget h1 {
-    font-size: 36px;
-    font-weight: 600;
-    padding-top: 30px;
-    margin-bottom: 10px;
-}
-
-.budget p {
-    font-size: 18px;
-    color: #999999;
-    margin-bottom: 30px;
-}
-
-.budget .dollarSign {
-    font-size: 20px;
-    padding-right: 5px;
-}
-
-.budget label {
-    font-weight: 600;
-}
-
-.budget input {
-    width: 230px;
-    font-size: 24px;
-    color: #333333;
-    padding: 5px;
-    border: 1px solid #e6e6e6;
-    margin-bottom: 50px;
-}
-
-
-
 /****** Purchases ******/
 /* Purchases Parent container */
 .purchasesParent {
-    margin: auto;
     margin: 0 auto 30px auto;
 }
 
@@ -388,7 +245,7 @@ nav button:nth-child(2) {
     margin-bottom: 5px;
 }
 
-.purchaseCategory {
+.purchaseLocation {
     font-weight: 600;
     margin-bottom: 5px;
 }
@@ -406,10 +263,117 @@ nav button:nth-child(2) {
     top: -40px;
 }
 
-/* Add Purchase button */
+/* New Purchase button */
 .purchasesParent .pinkButton {
+    margin: 32px auto 80px auto;
+}
+
+/****** New Purchase ******/
+/* New Purchase container */
+.newPurchase {
     margin: 0 auto 80px auto;
 }
+
+/* Title */
+.newPurchase h1 {
+    font-size: 30px;
+    font-weight: 600;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.newPurchase input {
+    width: 300px;
+    display: block;
+    font-size: 18px;
+    color: #333333;
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin: 10px 0 30px 50px;
+}
+
+.newPurchase label {
+    display: block;
+    color: #666666;
+}
+
+.newPurchase label,
+.newPurchase .dollarSign {
+    margin-left: 50px;
+}
+
+.newPurchase .cost {
+    width: 100px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.newPurchase .costLabel {
+    display: block;
+}
+
+.newPurchase .todaysMonth {
+    display: inline;
+    padding: 0 0 0 50px;
+}
+
+.newPurchase .day {
+    width: 40px;
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.newPurchase .pinkButton {
+    margin-top: 20px;
+}
+
+.noPurchases {
+    color: #999999;
+    text-align: center;
+    padding: 20px 0 20px 0;
+}
+
+
+/****** Budget ******/
+/* Budget container */
+.budget {
+    text-align: center;
+    margin: 0 auto 80px auto;
+}
+
+.budget h1 {
+    font-size: 30px;
+    font-weight: 600;
+    padding-top: 30px;
+    margin-bottom: 10px;
+}
+
+.budget p {
+    font-size: 18px;
+    color: #999999;
+    margin-bottom: 30px;
+}
+
+.budget .dollarSign {
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.budget label {
+    font-weight: 600;
+}
+
+.budget input {
+    width: 230px;
+    font-size: 24px;
+    color: #333333;
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    margin-bottom: 50px;
+}
+
 
 
 /***********
@@ -449,8 +413,7 @@ Mobile Styles
         margin: 0 30px;
     }
 
-    .newPurchase input, 
-    .newPurchase select {
+    .newPurchase input {
         background: white;
         width: 200px;
     }
