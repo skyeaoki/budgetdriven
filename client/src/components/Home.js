@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from './Header';
-import NewPurchase from './NewPurchase';
-import Purchases from './Purchases';
-import Budget from './Budget';
+import NewPurchase from './Pages/NewPurchase';
+import Purchases from './Pages/Purchases';
+import Budget from './Pages/Budget';
 import Footer from './Footer'
 
 let data = {
