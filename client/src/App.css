@@ -101,7 +101,7 @@ footer {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    margin-bottom: 25px;
+    margin: 0 auto 25px auto;
 }
 
 /* Submit button */
