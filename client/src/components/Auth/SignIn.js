@@ -5,7 +5,9 @@ class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: false
+            error: false,
+            email: "",
+            password: ""
         };
     }
 
@@ -23,7 +25,7 @@ class SignIn extends React.Component {
             password: this.state.password
         })
         .then( res => {
-            this.props.signIn(res.user);
+            this.props.signIn(res.data);
         })
         .catch( err => {
             if(err) {
@@ -34,16 +36,16 @@ class SignIn extends React.Component {
         })
     }
 
-
     render() {
         return (
             <div className="auth">
                     <img className="logo" src="logo.png" alt="logo" />
                     <form onSubmit={this.handleSubmit}>
-                        <input onChange={this.handleInputChange} type="email" id="email" name="email" placeholder="Email" />
-                        <input onChange={this.handleInputChange} type="password" id="password" name="password" placeholder="Password" />
+                        <input onChange={this.handleInputChange} type="email" id="email" name="email" placeholder="Email" maxLength="80"required />
+                        <input onChange={this.handleInputChange} type="password" id="password" name="password" placeholder="Password" maxLength="80" required />
+                        { this.state.error && <p className="error">Invalid email or password</p> }
                         <button type="submit" className="pinkButton">Sign In</button>
-                        <p>Don't have an account yet? Sign up</p>
+                        <p className="message">Don't have an account yet? <button>Sign up</button></p>
                     </form>
             </div>
         );

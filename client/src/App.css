@@ -56,6 +56,11 @@ footer {
     border: none;
 }
 
+/* Error Messages */
+.error {
+    color: red;
+}
+
 
 
 /****** Container Styles ******/
@@ -110,16 +115,18 @@ footer {
 }
 
 /* Message for navigating between sign up and sign in */
-.auth p {
+.auth .message {
     padding: 40px 0;
 }
 
-.auth p a {
+.auth .message button {
+    background: none;
     font-weight: 600;
+    font-size: 18px;
     color: #ff66b3;
     text-decoration: none;
+    border: none;
 }
-
 
 
 /****** Header ******/
