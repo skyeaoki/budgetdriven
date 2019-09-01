@@ -27,12 +27,12 @@ router.post('/signIn', (req, res, next) => {
 
 // Sign Up
 router.post('/signUp', (req, res, next) => {
-  // create a new user
+  // Create a new user
   let user = new User(req.body);
   user.save((err, user) => {
     if(err) return next(err);
 
-    // if user succesfully created return status 201
+    // If user succesfully created return status 201
     if(user) {
       res.sendStatus('201');
     }
@@ -41,9 +41,7 @@ router.post('/signUp', (req, res, next) => {
 
 // Log Out
 router.get('/logOut', (req, res, next) => {
-  // clear session
-  req.session.user = false;
-  res.sendStatus(200);
+  
 });
 
 
