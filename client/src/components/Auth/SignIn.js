@@ -17,6 +17,7 @@ class SignIn extends React.Component {
         });
     }
 
+    // Sign in 
     handleSubmit = (e) => {
         e.preventDefault();
         axios.post("/api/auth/signIn", {
@@ -25,6 +26,7 @@ class SignIn extends React.Component {
             password: this.state.password
         })
         .then( res => {
+            console.log(res);
             this.props.signIn(res.data);
         })
         .catch( err => {
@@ -45,8 +47,8 @@ class SignIn extends React.Component {
                         <input onChange={this.handleInputChange} type="password" id="password" name="password" placeholder="Password" maxLength="80" required />
                         { this.state.error && <p className="error">Invalid email or password</p> }
                         <button type="submit" className="pinkButton">Sign In</button>
-                        <p className="message">Don't have an account yet? <button>Sign up</button></p>
                     </form>
+                    <p className="message">Don't have an account yet? <button onClick={this.props.navigate}>Sign up</button></p>
             </div>
         );
     }

@@ -28,16 +28,31 @@ app.use(passport.initialize());
 // Passport configuration
 require("./config/passport")(passport);
 
-// Serve static files from React
-app.use(express.static(path.join(__dirname, 'client/build')));
-
 // Routers
 app.use("/api/auth", authRouter);
 
-// Handle any requests that don't match the ones above
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
+// Error handler
+app.use(function(err, req, res, next) {
+    let mongooseErrors = [];
+
+    // Mongoose validation error
+    if(err.name === "ValidationError") {
+      let mongooseValidationErrors = Object.keys(err.errors);
+      // Push each error message to array
+      mongooseValidationErrors.forEach( errorName => {
+        mongooseErrors.push(err.errors[errorName].message);
+      });  
+      // Send error array
+      res.send(mongooseErrors);
+    }  else {
+        // Log all other errors to console
+        console.error("Error: ", err.status, err.message || err);
+        // Send error status
+        res.sendStatus( err.status || 500 );
+    }
+   
+  });
+  
 
 const port = process.env.PORT || 5000;
 

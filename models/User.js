@@ -11,19 +11,19 @@ const UserSchema = new Schema({
     firstName: {
         type: String,
         required: [true, 'First name is required'],
-        max: [32, 'Last name must not exceed 50 characters'],
+        maxlength: [32, 'Last name must not exceed 50 characters'],
         trim: true
     },
     lastName: {
         type: String,
         required: [true, 'Last name is required'],
-        max: [32, 'Last name must not exceed 50 characters'],
+        maxlength: [32, 'Last name must not exceed 50 characters'],
         trim: true
     },
     email: {
         type: String,
         required: [true, 'Email is required'],
-        max: [80, 'Email must not exceed 80 characters'],
+        maxlength: [80, 'Email must not exceed 80 characters'],
         unique: [true, 'There is already an account associated with that email'],
         trim: true,
         // must be in valid email format
@@ -31,8 +31,8 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        min: [12, 'Password must be at least 12 characters'],
-        max: [32, 'Password must not exceed 32 characters'],
+        minlength: [12, 'Password must be at least 12 characters'],
+        maxlength: [32, 'Password must not exceed 32 characters'],
         required: [true, 'Password is required']
     }
 });
