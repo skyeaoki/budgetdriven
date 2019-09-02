@@ -50,7 +50,7 @@ UserSchema.pre('save', function(next) {
   this.firstName.charAt(0).toUpperCase() + this.firstName.slice(1);
   this.lastName.charAt(0).toUpperCase() + this.lastName.slice(1);
 
-  // Hash password before saving to database, only the first time it's stored
+  // Hash password before saving to database
   if(this.isModified('password')) {
     bcrypt.hash(user.password, 10, function(err, hash) {
       if(err) return next(err);

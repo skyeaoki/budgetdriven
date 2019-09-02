@@ -26,7 +26,6 @@ class SignIn extends React.Component {
             password: this.state.password
         })
         .then( res => {
-            console.log(res);
             this.props.signIn(res.data);
         })
         .catch( err => {

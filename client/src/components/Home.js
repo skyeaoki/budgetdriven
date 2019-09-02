@@ -37,13 +37,14 @@ let data = {
 class Home extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.budget - data.totalSpent);
         this.state = {
             page: "Purchases",
-            userFirstName: data.userFirstName,
-            budgetAmount: data.budgetAmount,
+            userFirstName: this.props.userFirstName,
+            budgetAmount: this.props.budget,
             totalSpent: data.totalSpent,
-            leftToSpend: data.totalSpent <= data.budgetAmount ? data.budgetAmount - data.totalSpent : 0,
-            progressBar: data.totalSpent <= data.budgetAmount ? data.totalSpent * 100 / data.budgetAmount : 100,
+            leftToSpend: data.totalSpent <= this.props.budget ? this.props.budget - data.totalSpent : 0,
+            progressBar: data.totalSpent <= this.props.budget ? data.totalSpent * 100 / this.props.budget : 100,
             // Purchases sorted by most recent
             purchases: data.purchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) })
         }
@@ -52,13 +53,8 @@ class Home extends React.Component {
     // Handles navigation
     navigate = e => {
         this.setState({
-            // Set the page to the value of the button clicked
             page: e.target.value
         })
-    }
-
-    multiplyBy100 = float => {
-        return float * 100
     }
 
     updateBudget = amount => {
@@ -161,6 +157,7 @@ class Home extends React.Component {
                 {   // Budget page
                     page === "Budget" &&  (
                     <Budget 
+                        userId={this.props.userId}
                         budgetAmount={this.state.budgetAmount}
                         updateBudget={this.updateBudget}
                     />

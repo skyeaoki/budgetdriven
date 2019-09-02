@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const authRouter = require("./routes/auth");
+const budgetRouter = require("./routes/budget");
 
 const app = express();
 
@@ -30,6 +31,7 @@ require("./config/passport")(passport);
 
 // Routers
 app.use("/api/auth", authRouter);
+app.use("/api/budget", budgetRouter);
 
 // Error handler
 app.use(function(err, req, res, next) {

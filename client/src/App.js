@@ -11,13 +11,16 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            authenticated: false,
             page: "SignIn"
         };
     }
 
-    signIn = () => {
+    signIn = (data) => {
+        // Pass the user's id, first name, and budget to props
         this.setState({
+            userId: data.user._id,
+            userFirstName: data.user.firstName,
+            budget: data.user.budget,
             authenticated: true
         });
     }
@@ -38,7 +41,11 @@ class App extends React.Component {
         return (
           <div className="App">
             { this.state.authenticated && (
-                <Home />
+                <Home 
+                    userId={this.state.userId}
+                    userFirstName={this.state.userFirstName}
+                    budget={this.state.budget}
+                />
             )
             }
             { (!this.state.authenticated && this.state.page === "SignIn") && ( 

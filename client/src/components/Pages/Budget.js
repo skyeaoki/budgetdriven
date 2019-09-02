@@ -23,11 +23,14 @@ class Budget extends React.Component {
 
         // Send budget to API
         axios.put("/api/budget", {
-            budget: this.state.budgetText
+            userId: this.props.userId,
+            budget: this.state.budgetAmount
         })
         // If successful, update the budget amounr in Home state
         .then( res => {
-            this.props.updateBudget(this.state.budgetAmount);
+            if(res.status === 204) {
+                this.props.updateBudget(this.state.budgetAmount);
+            }
         })
         .catch( err => {
             // If authentication fails
@@ -53,7 +56,7 @@ class Budget extends React.Component {
         <div className="budget">
             <h1>Budget</h1>
             <p>Set your monthly spending budget.</p>
-            <form onSubmit={this.handleSubmitTest}>
+            <form onSubmit={this.handleSubmit}>
                 <label className="dollarSign" htmlFor="budgetAmount">$</label>
                 <input onChange={this.onBudgetChange} type="number" id="budgetAmount" name="budgetAmount" step="0.01" min="0" max="9999999" autoFocus={true} required/>
                 <button className="pinkButton" type="submit">Submit</button>
