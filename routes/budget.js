@@ -5,7 +5,6 @@ const router = express.Router();
 
 // Update budget
 router.put('/', (req, res, next) => {
-    //console.log(req.body);
     User.findByIdAndUpdate(req.body.userId, {budget: req.body.budget}, {runValidators: true}, (err, updatedBudget) => {
         if(err) return next (err);
         if(updatedBudget) return res.sendStatus(204);

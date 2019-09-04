@@ -1,3 +1,6 @@
 /node_modules
 
 .env
+
+# visual studio code
+budgetdriven.code-workspace

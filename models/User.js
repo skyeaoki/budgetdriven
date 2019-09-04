@@ -43,6 +43,32 @@ const UserSchema = new Schema({
     }
 });
 
+// authenticate input
+UserSchema.statics.authenticate = (email, password) => {
+  // find the user associated with the given email
+  User.findOne({ email: email }, (err, user) => {
+    if(err) return callback(err);
+
+    // If no user return error
+    if(!user) {
+      let err = new Error("Email not found");
+      err.status = 401;
+      return callback(err);
+    }
+
+    // use bcrypt to compare the given password to the stored hashed password
+    bcrypt.compare(password, user.password, (error, result) => {
+      // if passwords match, return the user document
+      if(result === true) {
+        return callback(null, user);
+      // if passwords don't match, pass nothing on
+      } else {
+        return callback();
+      }
+    });
+  });
+};
+
 UserSchema.pre('save', function(next) {
   let user = this;
   

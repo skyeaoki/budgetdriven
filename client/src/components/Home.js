@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './Header';
+import Header from './Layout/Header';
 import NewPurchase from './Pages/NewPurchase';
 import Purchases from './Pages/Purchases';
 import Budget from './Pages/Budget';
-import Footer from './Footer'
+import Footer from './Layout/Footer'
 
 let data = {
     userFirstName: "Skye",
@@ -37,7 +37,6 @@ let data = {
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props.budget - data.totalSpent);
         this.state = {
             page: "Purchases",
             userFirstName: this.props.userFirstName,

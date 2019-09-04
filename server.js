@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const passport = require("passport");
+const cookieSession = require("cookie-session");
 
 const authRouter = require("./routes/auth");
 const budgetRouter = require("./routes/budget");
@@ -23,11 +23,18 @@ mongoose
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
-// Passport middleware
-app.use(passport.initialize());
+// Cookie Session set up
+let sess = {
+  resave: false,
+  saveUninitialized: true,
+  cookie: {}
+}
 
-// Passport configuration
-require("./config/passport")(passport);
+app.use(cookieSession({
+  name: 'session',
+  secret: process.env.SESSION_SECRET, 
+  maxAge: 3 * 1000 // 3 seconds in milliseconds
+}));
 
 // Routers
 app.use("/api/auth", authRouter);

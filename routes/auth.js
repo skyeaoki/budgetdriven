@@ -1,8 +1,17 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const User = require("../models/User").User;
 const router = express.Router();
+
+
+// Check if user is authorized on refresh
+router.get('/', (req, res, next) => {
+    if(req.session.user) {
+        return res.sendStatus(200);
+    } else {
+        return res.sendStatus(401);
+    }
+});
 
 // Sign Up
 router.post('/signUp', (req, res, next) => {
@@ -31,56 +40,41 @@ router.post('/signUp', (req, res, next) => {
 
 // Sign In
 router.post('/signIn', (req, res, next) => {
-    // Parse the authorization header into the user's credentials
     let email = req.body.email;
     let password = req.body.password;
-    
+  
     if(email && password) {
-        // Find user by email
-        User.findOne({ email }).then(user => {
-            // If no user return 404 error
-            if (!user) {
-                return res.sendStatus(404);
+
+        // Find the user by email
+        User.findOne({ email: email }, (err, user) => {
+            if(err) return console.log(err);
+
+            // If no user by that email return error
+            if(!user) {
+                return res.sendStatus(404).send(["Email not found"]);
             }
+
             // Check password
-            bcrypt.compare(password, user.password)
-                .then(isMatch => {
-                    if (isMatch) {
-                        // Create JWT Payload
-                        const payload = {
-                            id: user.id,
-                            name: user.name
-                        };
-                        // Sign token
-                        jwt.sign(
-                            payload,
-                            process.env.SECRET_OR_KEY,
-                            {
-                                expiresIn: 108000 // 1 hour in seconds
-                            },
-                            (err, token) => {
-                                res.json({
-                                    success: true,
-                                    token: "Bearer " + token,
-                                    user: user
-                                });
-                            }
-                        );
-                    } else {
-                        // If password is incorrect send 400 error
-                        return res.sendStatus(400);
-                    }
-                })
-                .catch( err => {
-                    if(err) return next (err);
-                });
+            bcrypt.compare(password, user.password, (error, result) => {
+                // If passwords match, return the user document
+                if(result === true) {
+                    req.session.user = user._id;
+                    return res.status(200).send(user);
+                // If passwords don't match return error
+                } else {
+                    return res.status(400).send(["Incorrect Password"]);
+                }
+            });
         });
     }
 });
 
+
 // Log Out
-router.get('/logOut', (req, res, next) => {
-  
+router.get('/signOut', (req, res, next) => {
+    // Clear session
+    req.session.user = false;
+    return res.sendStatus(200);
 });
 
 

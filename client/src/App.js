@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 // CSS Reset
 import './reset.css';
 import './App.css';
@@ -7,47 +8,72 @@ import SignIn from './components/Auth/SignIn.js';
 import SignUp from './components/Auth/SignUp.js';
 
 class App extends React.Component {
-
     constructor() {
         super();
+     
         this.state = {
-            page: "SignIn"
+            page: "SignIn",
+            loading: true
         };
+
+        this.authenticate();
     }
 
+    authenticate = () => {
+        axios.get("api/auth/")
+        .then( res => {
+            if(res.status === 200) {
+                this.setState({
+                    authenticated: true,
+                    loading: false
+                })
+            }
+        })
+        .catch( err => {
+            if(err) {
+                this.setState({
+                    authenticated: false,
+                    loading: false
+                })
+            }
+        });
+    };
+
     signIn = (data) => {
+        let user = data;
         // Pass the user's id, first name, and budget to props
         this.setState({
-            userId: data.user._id,
-            userFirstName: data.user.firstName,
-            budget: data.user.budget,
+            userId: user._id,
+            userFirstName: user.firstName,
+            budget: user.budget,
             authenticated: true
         });
-    }
+    };
 
     navigateToSignIn = () => {
         this.setState({
             page: "SignIn"
         });
-    }
+    };
 
     navigateToSignUp = () => {
         this.setState({
             page: "SignUp"
         });
-    }
+    };
 
     render() {
+        if(this.state.loading) return null;
+
         return (
-          <div className="App">
-            { this.state.authenticated && (
+            <div className="App"> 
+            { (this.state.authenticated) && (
                 <Home 
                     userId={this.state.userId}
                     userFirstName={this.state.userFirstName}
                     budget={this.state.budget}
                 />
-            )
-            }
+            )}
             { (!this.state.authenticated && this.state.page === "SignIn") && ( 
                 <SignIn 
                     signIn={this.signIn}
@@ -59,7 +85,7 @@ class App extends React.Component {
                     navigate={this.navigateToSignIn}
                 />
             )}
-          </div>
+            </div>
         );
     }
 }

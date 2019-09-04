@@ -30,6 +30,7 @@ class SignIn extends React.Component {
         })
         .catch( err => {
             if(err) {
+                console.log(err);
                 this.setState({
                     error: true
                 })
