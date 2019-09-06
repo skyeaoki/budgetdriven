@@ -1,6 +1,6 @@
-import React from 'react';
-import moment from 'moment';
-import axios from 'axios';
+import React from "react";
+import moment from "moment";
+import axios from "axios";
 
 class NewPurchase extends React.Component {
     constructor(props) {
@@ -9,20 +9,18 @@ class NewPurchase extends React.Component {
             todaysMonthAndYear: moment().format('MMMM YYYY'),
             todaysMonth: moment().format('MMMM'),
             todaysDay: moment().format('DD'),
-            cost: null,
-            description: null,
             day: moment().format('DD'),
+            errors: []
         };
     }
 
-    // Store the value of the form inputs
     handleInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
     
-    // Handles form submission
+    // Submit new purchase
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -33,46 +31,37 @@ class NewPurchase extends React.Component {
             formattedDate: formattedDate,
             location: this.state.location,
             description: this.state.description,
-            price: parseFloat(this.state.cost)
-        };
-      
-        // Send form data to API
-        axios.post("/api/newPurchase", {
-            body: purchase
-        })
-        .then( res => {
-            this.props.addPurchase(purchase);
-        })
-        .catch( err => {
-            // If authentication fails
-            if(err) {
-                // Show error message
-                this.setState({
-                    error: true
-                })
+            cost: parseFloat(this.state.cost)
+        }
+        
+        // First, check if authentication has timed out
+        axios.get("/api/auth/")
+        .then(res => {
+            // If user is still logged in 
+            if(res.status === 200) {
+                // Post new purchase to db
+                axios.post("/api/purchases/new", purchase)
+                .then( res => {
+                    // If purchase successfully created, add purchase to Home state
+                    if(res.status === 201) {
+                        this.props.addPurchase(purchase);
+                    // If not, show errors
+                    } else {
+                        this.setState({ errors: res.data });
+                    }
+                }).catch(err => console.log(err));
             }
-        });  
-    }
+        })        
+        // If user has been logged out, refresh the page
+        .catch(err => { if(err) window.location.reload() });
+    };
 
-    handleSubmitTest= (e) => {
-        e.preventDefault();
-        let date = new Date(this.state.day + " " + this.state.todaysMonthAndYear);
-        let formattedDate = moment(date).format('dddd MMMM DD');
-        let purchase = {
-            date: date,
-            formattedDate: formattedDate,
-            location: this.state.location,
-            description: this.state.description,
-            price: parseFloat(this.state.cost)
-        };
-        this.props.addPurchase(purchase);
-    }
 
     render() {
         return (
             <div className="newPurchase">
                 <h1>New Purchase</h1>
-                <form onSubmit={this.handleSubmitTest}>
+                <form onSubmit={this.handleSubmit}>
                     <label htmlFor="cost" className="costLabel">Cost</label>
                     <span className="dollarSign">$</span>
                     <input onChange={this.handleInputChange} className="cost" type="number" id="cost" name="cost" step="0.01" min="0.01" max="999999" autoFocus={true} required /><br />
@@ -89,6 +78,13 @@ class NewPurchase extends React.Component {
                     <span className="todaysYear">2019</span>
                     <button type="submit" className="pinkButton">Submit</button>
                 </form>
+                { // Error Messages
+                    (this.state.errors.length > 0) && (
+                        this.state.errors.map( (error, i) => {
+                            return <p className="error" key={i} >{error}</p>;
+                        })
+                    )
+                }
             </div>
         );
     }

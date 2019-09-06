@@ -9,7 +9,6 @@ class Budget extends React.Component {
         };
     }
 
-    // Watch budget input changes
     onBudgetChange = e => {
         this.setState({
             budgetAmount: e.target.value
@@ -25,7 +24,7 @@ class Budget extends React.Component {
         .then(res => {
             // If user is still logged in 
             if(res.status === 200) {
-                // Update budget
+                // Update budget in db
                 axios.put("/api/budget", {
                     userId: this.props.userId,
                     budget: this.state.budgetAmount
@@ -36,25 +35,12 @@ class Budget extends React.Component {
                         this.props.updateBudget(this.state.budgetAmount);
                     }
                 })
-                .catch( err => {
-                    console.log(err);
-                }); 
+                .catch(err => console.log(err)); 
             }      
         })
-        .catch(err => {
-            // If user has been logged out, refresh the page
-            if(err) {
-                window.location.reload();
-            }
-        });
+        // If user has been logged out, refresh the page
+        .catch(err => { if(err) window.location.reload() });
     };
-
-
-    handleSubmitTest = e => {
-        e.preventDefault();
-        this.props.updateBudget(this.state.budgetAmount);
-    }
-
 
     render() {
 

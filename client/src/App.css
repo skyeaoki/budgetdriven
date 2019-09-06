@@ -262,7 +262,7 @@ nav button:nth-child(2) {
     margin-bottom: 5px; 
 }
 
-.purchasePrice {
+.purchaseCost {
     font-size: 18px;
     text-align: right;
     font-weight: 600;

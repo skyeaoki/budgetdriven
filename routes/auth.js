@@ -7,7 +7,12 @@ const router = express.Router();
 // Check if user is authorized on refresh
 router.get('/', (req, res, next) => {
     if(req.session.user) {
-        return res.sendStatus(200);
+        User.findById(req.session.user)
+        .then( user => {
+            // Return user document
+            return res.status(200).send(user);
+        })
+        .catch(err => { if(err) console.log(err) });
     } else {
         return res.sendStatus(401);
     }

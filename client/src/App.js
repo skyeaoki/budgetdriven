@@ -22,9 +22,13 @@ class App extends React.Component {
     authenticate = () => {
         axios.get("api/auth/")
         .then( res => {
+            let user = res.data;
             if(res.status === 200) {
                 this.setState({
                     authenticated: true,
+                    userFirstName: user.firstName,
+                    budget: user.budget,
+                    userId: user._id,
                     loading: false
                 })
             }

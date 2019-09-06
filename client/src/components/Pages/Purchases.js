@@ -1,23 +1,35 @@
-import React from 'react';
+import React from "react";
+import axios from "axios";
 
 class Purchases extends React.Component {
-    render() {
+    
 
+    deletePurchase = (e) => {
+        let purchaseId = e.target.value;
+        axios.delete("/api/purchases/", { data: {id: purchaseId} })
+        .then( res => {
+            if(res.status === 204) { 
+                this.props.deletePurchase(purchaseId);
+            }
+        })
+        .catch(err => { if(err) console.log(err) });
+    }
+    render() {
         return (
             <div className="purchasesParent">
                 <div className="purchases">
                     {   // if the user has purchases show them
                         this.props.purchases.length > 0 ? (
-                            this.props.purchases.map( (purchase, index) => {
+                            this.props.purchases.map( (purchase) => {
                                 return (
-                                    <div className="purchase" key={index}>
+                                    <div className="purchase" key={purchase._id}>
                                         <div className="purchaseDelete">
-                                            <button value={index} onClick={this.props.deletePurchase}>x</button>
+                                            <button value={purchase._id} onClick={this.deletePurchase}>x</button>
                                         </div>
                                         <p className="purchaseDate">{purchase.formattedDate}</p>
                                         <p className="purchaseLocation">{purchase.location}</p>
                                         <p className="purchaseDescription">{purchase.description}</p>
-                                        <p className="purchasePrice">${purchase.price}</p>
+                                        <p className="purchaseCost">${purchase.cost}</p>
                                     </div>
                                 );
                             })

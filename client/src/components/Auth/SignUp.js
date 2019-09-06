@@ -36,16 +36,11 @@ class SignUp extends React.Component {
                 // If user was succesfully created, redirect to sign in page 
                 if(res.status === 201) {
                     this.props.navigate();
-                // Error handling
+                // If not, show errors
                 } else {
-                    this.setState({
-                        errors: res.data
-                    });
+                    this.setState({ errors: res.data });
                 }
-            }).catch( err => {
-                // Prevent unhandled errors
-                console.log(err);
-            });
+            }).catch( err => console.log(err));
         }
     }
 
