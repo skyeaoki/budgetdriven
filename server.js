@@ -30,23 +30,12 @@ let sess = {
     cookie: {}
 };
 
-// Cookie Sesion: Secure in production
-if(process.env.NODE_ENV === "production") {
-    app.use(cookieSession({
-        name: "session",
-        secret: process.env.SESSION_SECRET, 
-        maxAge:  30 * 60 * 1000, // 30 minutes in milliseconds
-        secure: true
-    }));
-} else {
-    // Unsecured in development
-    app.use(cookieSession({
-        name: "session",
-        secret: process.env.SESSION_SECRET, 
-        maxAge:  30 * 60 * 1000, // 30 minutes in milliseconds
-        secure: false
-    }));
-}
+app.use(cookieSession({
+    name: "session",
+    secret: process.env.SESSION_SECRET, 
+    maxAge:  30 * 60 * 1000, // 30 minutes in milliseconds
+    secure: false
+}));
 
 // Serve static files from React
 app.use(express.static(path.join(__dirname, 'client/build')));
