@@ -51,10 +51,16 @@ if(process.env.NODE_ENV === "production") {
 // Serve static files from React
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+
 // Routers
 app.use("/api/auth", authRouter);
 app.use("/api/purchases", purchasesRouter);
 app.use("/api/budget", budgetRouter);
+
+// Handle any requests that don't match the ones above
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // Error handler
 app.use(function(err, req, res, next) {
