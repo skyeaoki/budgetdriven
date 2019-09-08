@@ -79,16 +79,6 @@ app.use(function(err, req, res, next) {
   
 const port = process.env.PORT || 5000;
 
-// Run HTTPS server in production
-if(process.env.NODE_ENV === "production") {
-    https.createServer({
-        key: fs.readFileSync(process.env.NODE_SERVER_KEY),
-        cert: fs.readFileSync(process.env.NODE_SERVER_CERT)
-    }, app)
-    .listen(port, () => console.log(`Server up and running on port ${port} !`));
-} else {
-    // Run HTTP server in development
-    app.listen(port, () => console.log(`Server up and running on port ${port} !`));
-}
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));
 
 module.exports = app;
