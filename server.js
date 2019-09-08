@@ -51,7 +51,6 @@ if(process.env.NODE_ENV === "production") {
 // Serve static files from React
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-
 // Routers
 app.use("/api/auth", authRouter);
 app.use("/api/purchases", purchasesRouter);
