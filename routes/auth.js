@@ -48,10 +48,8 @@ router.post("/signIn", (req, res, next) => {
     let password = req.body.password;
   
     if(email && password) {
-        console.log("if email and password");
         // Find the user by email
         User.findOne({ email: email }, (err, user) => {
-            console.log("finding User");
             if(err) return console.log(err);
 
             // If no user by that email return error
@@ -62,7 +60,6 @@ router.post("/signIn", (req, res, next) => {
 
             // Check password
             bcrypt.compare(password, user.password, (error, result) => {
-                console.log("comparing passwords");
                 // If passwords match, return the user document
                 if(result === true) {
                     req.session.user = user._id;

@@ -23,8 +23,6 @@ mongoose
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
-console.log("test");
-
 // Cookie Session set up
 let sess = {
     resave: false,
