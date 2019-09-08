@@ -4,7 +4,9 @@
   "description": "minimalist budget app ",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
+    "postinstall": "cd client && npm install",
+    "heroku-postbuild": "cd client && npm run build",
     "dev": "nodemon server.js"
   },
   "repository": {
