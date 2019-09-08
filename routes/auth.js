@@ -15,7 +15,7 @@ router.get("/", (req, res, next) => {
         })
         .catch(err => { if(err) console.log(err) });
     } else {
-        return res.sendStatus(401);
+        //return res.sendStatus(401);
     }
 });
 
