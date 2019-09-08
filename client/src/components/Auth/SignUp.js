@@ -1,5 +1,5 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -20,11 +20,10 @@ class SignUp extends React.Component {
         e.preventDefault();
         // First check if passwords match
         if(this.state.password !== this.state.password2) {
-            this.setState({
-                errors: ["Passwords do not match"]
-            })
-        // If passwords match, send form info to server for validation
+            // Show error if no match
+            this.setState({ errors: ["Passwords do not match"] });
         } else {
+            // If match, send form info to server for validation
             axios.post("/api/auth/signUp", {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
@@ -36,11 +35,11 @@ class SignUp extends React.Component {
                 // If user was succesfully created, redirect to sign in page 
                 if(res.status === 201) {
                     this.props.navigate();
-                // If not, show errors
-                } else {
-                    this.setState({ errors: res.data });
                 }
-            }).catch( err => console.log(err));
+            // If not, show errors
+            }).catch( err => { 
+                if(err) this.setState({ errors: err.response.data }) 
+            });
         }
     }
 
@@ -59,8 +58,7 @@ class SignUp extends React.Component {
                         this.state.errors.map( (error, i) => {
                             return <p className="error" key={i} >{error}</p>;
                         })
-                    )
-                    }
+                    )}
                     <button type="submit" className="pinkButton">Sign Up</button>
                 </form>
 

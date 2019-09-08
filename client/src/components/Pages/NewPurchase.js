@@ -6,10 +6,10 @@ class NewPurchase extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todaysMonthAndYear: moment().format('MMMM YYYY'),
-            todaysMonth: moment().format('MMMM'),
-            todaysDay: moment().format('DD'),
-            day: moment().format('DD'),
+            todaysMonthAndYear: moment().format("MMMM YYYY"),
+            todaysMonth: moment().format("MMMM"),
+            todaysDay: moment().format("DD"),
+            day: moment().format("DD"),
             errors: []
         };
     }
@@ -25,7 +25,7 @@ class NewPurchase extends React.Component {
         e.preventDefault();
 
         let date = new Date(this.state.day + " " + this.state.todaysMonthAndYear);
-        let formattedDate = moment(date).format('dddd MMMM DD');
+        let formattedDate = moment(date).format("dddd MMMM DD");
         let purchase = {
             date: date,
             formattedDate: formattedDate,
@@ -44,6 +44,8 @@ class NewPurchase extends React.Component {
                 .then( res => {
                     // If purchase successfully created, add purchase to Home state
                     if(res.status === 201) {
+                        // Include purchase id
+                        purchase._id = res.data;
                         this.props.addPurchase(purchase);
                     // If not, show errors
                     } else {

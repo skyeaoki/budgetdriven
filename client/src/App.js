@@ -1,11 +1,11 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 // CSS Reset
-import './reset.css';
-import './App.css';
-import Home from './components/Home.js';
-import SignIn from './components/Auth/SignIn.js';
-import SignUp from './components/Auth/SignUp.js';
+import "./reset.css";
+import "./App.css";
+import Home from "./components/Home.js";
+import SignIn from "./components/Auth/SignIn.js";
+import SignUp from "./components/Auth/SignUp.js";
 
 class App extends React.Component {
     constructor() {

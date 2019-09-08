@@ -29,7 +29,7 @@ class Purchases extends React.Component {
                                         <p className="purchaseDate">{purchase.formattedDate}</p>
                                         <p className="purchaseLocation">{purchase.location}</p>
                                         <p className="purchaseDescription">{purchase.description}</p>
-                                        <p className="purchaseCost">${purchase.cost}</p>
+                                        <p className="purchaseCost">${purchase.cost.toFixed(2)}</p>
                                     </div>
                                 );
                             })

@@ -1,13 +1,11 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: false,
-            email: "",
-            password: ""
+            errors: []
         };
     }
 
@@ -21,21 +19,19 @@ class SignIn extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         axios.post("/api/auth/signIn", {
-            // post email in lowercase to prevent non-unique emails
+            // Post email in lowercase to prevent non-unique emails
             email: this.state.email.toLowerCase(),
             password: this.state.password
         })
         .then( res => {
-            this.props.signIn(res.data);
-        })
-        .catch( err => {
-            if(err) {
-                console.log(err);
-                this.setState({
-                    error: true
-                })
+            // If user succesfully authenticated, sign in
+            if(res.status === 200) {
+                this.props.signIn(res.data);
             }
-        })
+        // If not, show errors
+        }).catch( err => { 
+            if(err) this.setState({ errors: err.response.data }) 
+        });
     }
 
     render() {
@@ -45,7 +41,12 @@ class SignIn extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <input onChange={this.handleInputChange} type="email" id="email" name="email" placeholder="Email" maxLength="80"required />
                         <input onChange={this.handleInputChange} type="password" id="password" name="password" placeholder="Password" maxLength="80" required />
-                        { this.state.error && <p className="error">Invalid email or password</p> }
+                        { // Error Messages
+                        (this.state.errors.length > 0) && (
+                            this.state.errors.map( (error, i) => {
+                                return <p className="error" key={i} >{error}</p>;
+                            })
+                        )}
                         <button type="submit" className="pinkButton">Sign In</button>
                     </form>
                     <p className="message">Don't have an account yet? <button onClick={this.props.navigate}>Sign up</button></p>

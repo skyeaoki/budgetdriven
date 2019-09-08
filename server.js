@@ -1,6 +1,8 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
@@ -11,31 +13,43 @@ const budgetRouter = require("./routes/budget");
 
 const app = express();
 
-// Remove deprecation warning
-mongoose.set('useCreateIndex', true);
-
 // Body parsing middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose
-    .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false })
+    .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
 // Cookie Session set up
 let sess = {
-  resave: false,
-  saveUninitialized: true,
-  cookie: {}
+    resave: false,
+    saveUninitialized: true,
+    cookie: {}
 };
 
-app.use(cookieSession({
-  name: 'session',
-  secret: process.env.SESSION_SECRET, 
-  maxAge: 30 * 60 * 1000 // 30 minutes in milliseconds
-}));
+// Cookie Sesion: Secure in production
+if(process.env.NODE_ENV === "production") {
+    app.use(cookieSession({
+        name: "session",
+        secret: process.env.SESSION_SECRET, 
+        maxAge:  30 * 60 * 1000, // 30 minutes in milliseconds
+        secure: true
+    }));
+} else {
+    // Unsecured in development
+    app.use(cookieSession({
+        name: "session",
+        secret: process.env.SESSION_SECRET, 
+        maxAge:  30 * 60 * 1000, // 30 minutes in milliseconds
+        secure: false
+    }));
+}
+
+// Serve static files from React
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Routers
 app.use("/api/auth", authRouter);
@@ -54,7 +68,7 @@ app.use(function(err, req, res, next) {
           errors.push(err.errors[errorName].message);
         });  
         // Send error array
-        res.send(errors);
+        res.status(500).send(errors);
     }  else {
         // Log all other errors to console
         console.error("Error: ", err.status, err.message || err);
@@ -63,7 +77,18 @@ app.use(function(err, req, res, next) {
     }
 });
   
-
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+// Run HTTPS server in production
+if(process.env.NODE_ENV === "production") {
+    https.createServer({
+        key: fs.readFileSync(process.env.NODE_SERVER_KEY),
+        cert: fs.readFileSync(process.env.NODE_SERVER_CERT)
+    }, app)
+    .listen(port, () => console.log(`Server up and running on port ${port} !`));
+} else {
+    // Run HTTP server in development
+    app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+}
+
+module.exports = app;

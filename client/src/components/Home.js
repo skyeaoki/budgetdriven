@@ -1,10 +1,10 @@
-import React from 'react';
-import Header from './Layout/Header';
-import NewPurchase from './Pages/NewPurchase';
-import Purchases from './Pages/Purchases';
-import Budget from './Pages/Budget';
-import Footer from './Layout/Footer'
-import axios from 'axios';
+import React from "react";
+import Header from "./Layout/Header";
+import NewPurchase from "./Pages/NewPurchase";
+import Purchases from "./Pages/Purchases";
+import Budget from "./Pages/Budget";
+import Footer from "./Layout/Footer"
+import axios from "axios";
 
 class Home extends React.Component {
     constructor(props) {
@@ -99,7 +99,11 @@ class Home extends React.Component {
             // Calculate total spent and left to spend
             let totalSpent = this.state.totalSpent - deletedPurchase.cost;
             let leftToSpend = this.state.leftToSpend + deletedPurchase.cost;
-
+            
+            // Round to the nearest hundredth because Javascript has issues with floating point arithmetic
+            totalSpent = Math.round(100 * totalSpent)/100;
+            leftToSpend = Math.round(100 * leftToSpend)/100;
+            
             this.setState({
                 // Update purchases
                 purchases: updatedPurchases,
@@ -121,10 +125,14 @@ class Home extends React.Component {
         updatedPurchases.unshift(purchase);
         // Sort by most recent day
         updatedPurchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) });
-
-        // Calculate total spent and leftToSpend
+        
+        // Calculate total spent and left to spend
         let totalSpent = this.state.totalSpent + purchase.cost;
         let leftToSpend = this.state.leftToSpend - purchase.cost;
+        
+        // Round to the nearest hundredth because Javascript has issues with floating point arithmetic
+        totalSpent = Math.round(100 * totalSpent)/100;
+        leftToSpend = Math.round(100 * leftToSpend)/100;
     
 
         this.setState({

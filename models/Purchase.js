@@ -1,7 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const moment = require("moment");
 
 const PurchaseSchema = new Schema({
+    // Set to expire in 32 days
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        expires: 2764800 // 32 days in seconds
+    },
     _id: {
         type: Schema.ObjectId,
         auto: true,
@@ -34,6 +41,10 @@ const PurchaseSchema = new Schema({
     formattedDate: {
         type: String,
         required: [true, "Date is invalid"]
+    },
+    month: {
+        type: String,
+        default: moment().format('MMMM') 
     }
 });
 

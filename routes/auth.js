@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 // Check if user is authorized on refresh
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
     if(req.session.user) {
         User.findById(req.session.user)
         .then( user => {
@@ -19,13 +19,13 @@ router.get('/', (req, res, next) => {
 });
 
 // Sign Up
-router.post('/signUp', (req, res, next) => {
+router.post("/signUp", (req, res, next) => {
     // First check if user already exists 
     User.findOne({ email: req.body.email })
         .then(user => {
             // If user already exists, return error
             if (user) {
-                return res.send(["Email already exists"]);
+                return res.status(400).send(["Email already exists"]);
             } else {
                 // Create a new user
                 let user = new User(req.body);
@@ -33,30 +33,27 @@ router.post('/signUp', (req, res, next) => {
                     if(err) return next(err);
                     // If user succesfully created return status 201
                     if(user) {
-                        return res.sendStatus('201');
+                        return res.sendStatus("201");
                     }
                 });
             }
         })
-        .catch(err => {
-            if(err) return next(err);
-        });
+        .catch(err => { if(err) console.log(err) });
 });
 
 // Sign In
-router.post('/signIn', (req, res, next) => {
+router.post("/signIn", (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
   
     if(email && password) {
-
         // Find the user by email
         User.findOne({ email: email }, (err, user) => {
             if(err) return console.log(err);
 
             // If no user by that email return error
             if(!user) {
-                return res.sendStatus(404).send(["Email not found"]);
+                return res.status(404).send(["Email not found"]);
             }
 
             // Check password
@@ -65,8 +62,8 @@ router.post('/signIn', (req, res, next) => {
                 if(result === true) {
                     req.session.user = user._id;
                     return res.status(200).send(user);
-                // If passwords don't match return error
                 } else {
+                    // If passwords don't match return error
                     return res.status(400).send(["Incorrect Password"]);
                 }
             });
@@ -76,7 +73,7 @@ router.post('/signIn', (req, res, next) => {
 
 
 // Log Out
-router.get('/signOut', (req, res, next) => {
+router.get("/signOut", (req, res, next) => {
     // Clear session
     req.session.user = false;
     return res.sendStatus(200);
