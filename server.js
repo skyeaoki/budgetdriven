@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose
-    .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
+    .connect(process.env.MONGOLAB_BLACK_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
