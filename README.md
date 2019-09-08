@@ -1,2 +1,1 @@
-A Work in Progress... 
-Estimated finish date: September 16, 2019
+A MERN stack app to manually track your monthly spending and help you stay within your budget. See it live: https://www.budget-driven.com.
