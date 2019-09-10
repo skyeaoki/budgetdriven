@@ -124,7 +124,7 @@ class Home extends React.Component {
         // Push new purchase to front of array
         updatedPurchases.unshift(purchase);
         // Sort by most recent day
-        updatedPurchases.sort( (a,b) => { return b.date - a.date });
+        updatedPurchases.sort( (a,b) => { purchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) }),
         
         // Calculate total spent and left to spend
         let totalSpent = this.state.totalSpent + purchase.cost;
