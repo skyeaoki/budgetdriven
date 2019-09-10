@@ -5,7 +5,6 @@ const Purchase = require("../models/Purchase").Purchase;
 const router = express.Router();
 const moment =require("moment");
 
-
 // Get all purchases
 router.get("/all", (req, res, next) => {
     Purchase
