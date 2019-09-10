@@ -42,14 +42,14 @@ class Home extends React.Component {
         .then( res => {
             let purchases = res.data;
             let budget = this.state.budgetAmount;
-            // Calculate total spent
             let totalSpent = 0;
-            purchases.forEach( purchase => console.log(purchase.date));
+
+            // Calculate total spent
             purchases.forEach( purchase => totalSpent += purchase.cost);
 
             this.setState({
                 // Sort purchases by most recent
-                purchases: purchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) }),
+                purchases: purchases.sort( (a,b) => { return b.date - a.date }),
                 totalSpent: totalSpent,
                 // Calculate the amount left to spend (if it's not positive display 0)
                 leftToSpend: totalSpent <= budget ? budget - totalSpent : 0,
@@ -124,7 +124,7 @@ class Home extends React.Component {
         // Push new purchase to front of array
         updatedPurchases.unshift(purchase);
         // Sort by most recent day
-        updatedPurchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) });
+        updatedPurchases.sort( (a,b) => { return b.date - a.date });
         
         // Calculate total spent and left to spend
         let totalSpent = this.state.totalSpent + purchase.cost;

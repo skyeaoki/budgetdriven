@@ -43,7 +43,6 @@ router.post("/signUp", (req, res, next) => {
 
 // Sign In
 router.post("/signIn", (req, res, next) => {
-    console.log("signIn route");
     let email = req.body.email;
     let password = req.body.password;
   
@@ -54,7 +53,6 @@ router.post("/signIn", (req, res, next) => {
 
             // If no user by that email return error
             if(!user) {
-                console.log("no user");
                 return res.status(404).send(["Email not found"]);
             }
 
