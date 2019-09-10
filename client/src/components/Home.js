@@ -44,8 +44,8 @@ class Home extends React.Component {
             let budget = this.state.budgetAmount;
             // Calculate total spent
             let totalSpent = 0;
+            purchases.forEach( purchase => console.log(purchase.date));
             purchases.forEach( purchase => totalSpent += purchase.cost);
-
 
             this.setState({
                 // Sort purchases by most recent

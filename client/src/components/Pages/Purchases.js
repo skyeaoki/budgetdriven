@@ -14,6 +14,7 @@ class Purchases extends React.Component {
         })
         .catch(err => { if(err) console.log(err) });
     }
+    
     render() {
         return (
             <div className="purchasesParent">

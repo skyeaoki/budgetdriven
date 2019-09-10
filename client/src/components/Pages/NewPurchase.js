@@ -6,7 +6,7 @@ class NewPurchase extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todaysMonthAndYear: moment().format("MMMM YYYY"),
+            todaysMonthYearTime: moment().format("MMMM YYYY, h:mm:ss a"),
             todaysMonth: moment().format("MMMM"),
             todaysDay: moment().format("DD"),
             day: moment().format("DD"),
@@ -24,7 +24,8 @@ class NewPurchase extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        let date = new Date(this.state.day + " " + this.state.todaysMonthAndYear);
+        let date = new Date(this.state.day + " " + this.state.todaysMonthYearTime);
+        console.log(date);
         let formattedDate = moment(date).format("dddd MMMM DD");
         let purchase = {
             date: date,
