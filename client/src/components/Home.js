@@ -49,7 +49,7 @@ class Home extends React.Component {
 
             this.setState({
                 // Sort purchases by most recent
-                purchases: purchases.sort( (a,b) => { return b.date - a.date }),
+                purchases: purchases.sort( (a,b) => { return new Date(b.date) - new Date(a.date) }),
                 totalSpent: totalSpent,
                 // Calculate the amount left to spend (if it's not positive display 0)
                 leftToSpend: totalSpent <= budget ? budget - totalSpent : 0,

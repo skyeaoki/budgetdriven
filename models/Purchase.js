@@ -35,7 +35,7 @@ const PurchaseSchema = new Schema({
         maxlength: [45, "Description must not exceed 45 characters"]
     },
     date: {
-        type: Date,
+        type: String,
         required: [true, "Date is required"]
     },
     formattedDate: {

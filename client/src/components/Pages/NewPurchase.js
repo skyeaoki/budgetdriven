@@ -25,7 +25,7 @@ class NewPurchase extends React.Component {
         e.preventDefault();
 
         let date = new Date(this.state.day + " " + this.state.todaysMonthYearTime);
-        console.log(date);
+    
         let formattedDate = moment(date).format("dddd MMMM DD");
         let purchase = {
             date: date,
