@@ -6,62 +6,60 @@ body,
 button,
 input,
 select {
-    font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 body {
-    background: #f6f6f6;
-    color: #333333;
-    font-size: 18px;
+  background: #f6f6f6;
+  color: #333333;
+  font-size: 18px;
 }
 
 button:focus,
 input:focus {
-    outline: none;
+  outline: none;
 }
 
-/* Apply pink and semi-bold style */
-.pink, 
-.dollarSign, 
+/* Emphasize text (bold and pink) */
+.emphasis,
+.dollarSign,
 .active,
 nav button:hover {
-    color: #ff66b3;
-    font-weight: 600;
+  color: #ff66b3;
+  font-weight: 600;
 }
 
-/* Pink buttons */
-.pinkButton {
-    width: 425px;
-    background: #ff66b3;
-    font-size: 24px;
-    font-weight: 600;
-    color: white;
-    padding: 15px 0;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
+/* Primary buttons */
+.primaryButton {
+  width: 425px;
+  background: #ff66b3;
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  padding: 15px 0;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
 }
 
 /* Sign Out button */
 footer {
-    text-align: center;
-    padding-bottom: 30px;
+  text-align: center;
+  padding-bottom: 30px;
 }
 
 .signOut {
-    text-decoration: underline;
-    font-size: 18px;
-    color: #999999;
-    background: none;
-    border: none;
+  text-decoration: underline;
+  font-size: 18px;
+  color: #999999;
+  background: none;
+  border: none;
 }
 
 /* Error Messages */
 .error {
-    color: red;
+  color: red;
 }
-
-
 
 /****** Container Styles ******/
 /* Set width of Containers */
@@ -71,362 +69,351 @@ footer {
 .purchasesParent,
 .purchases,
 .newPurchase {
-    width: 425px;
+  width: 425px;
 }
 
 /* White containers with rounded corners & box shadow */
 .budget,
 .purchases,
-.newPurchase  {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
-
+.newPurchase {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
 }
-
-
 
 /****** Auth (Sign in/ Sign Up) ******/
 /* Auth container */
 .auth {
-    text-align: center;
-    margin: 10% auto 0 auto;
+  text-align: center;
+  margin: 10% auto 0 auto;
 }
 
 .logo {
-    width: 250px;
-    padding-bottom: 60px;
+  width: 250px;
+  padding-bottom: 60px;
 }
 
 .auth input {
-    display: block;
-    width: 405px;
-    font-size: 18px;
-    color: #999999;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin: 0 auto 25px auto;
+  display: block;
+  width: 405px;
+  font-size: 18px;
+  color: #999999;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 0 auto 25px auto;
 }
 
 /* Submit button */
 .auth .pinkButton {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
 /* Message for navigating between sign up and sign in */
 .auth .message {
-    padding: 40px 0;
+  padding: 40px 0;
 }
 
 .auth .message button {
-    background: none;
-    font-weight: 600;
-    font-size: 18px;
-    color: #ff66b3;
-    text-decoration: none;
-    border: none;
+  background: none;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ff66b3;
+  text-decoration: none;
+  border: none;
 }
-
 
 /****** Header ******/
 /* Header container */
 .header {
-    text-align: center;
-    font-size: 20px;
-    color: #999999;
-    margin: 75px auto 0 auto;
+  text-align: center;
+  font-size: 20px;
+  color: #999999;
+  margin: 75px auto 0 auto;
 }
 
 .greeting {
-    padding-bottom: 30px;
+  padding-bottom: 30px;
 }
-    .greeting p {
-        padding-bottom: 10px;
-    }
+.greeting p {
+  padding-bottom: 10px;
+}
 
 .leftToSpend {
-    font-size: 48px;
-    font-weight: 700;
-    color: #333333;
-    padding-bottom: 30px;
+  font-size: 48px;
+  font-weight: 700;
+  color: #333333;
+  padding-bottom: 30px;
 }
 
-    .leftToSpend .dollarSign {
-        font-size: 24px;
-        font-weight: 700;
-        padding-right: 10px;
-    }
+.leftToSpend .dollarSign {
+  font-size: 24px;
+  font-weight: 700;
+  padding-right: 10px;
+}
 
 /* Budget Progress Bar */
-.progressBar { 
-	height: 7px; 
-	position: relative;
-	background: #d6d6d6;
-	border-radius: 5px;
+.progressBar {
+  height: 7px;
+  position: relative;
+  background: #d6d6d6;
+  border-radius: 5px;
 }
 
-    .progressBar div {
-        display: block;
-        height: 100%;
-        background-color: #ff66b3;
-        position: relative;
-        overflow: hidden;
-        border-radius: 5px;
-    }
+.progressBar div {
+  display: block;
+  height: 100%;
+  background-color: #ff66b3;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
 
 .progressBarAmounts {
-    color: #333333;
-    font-weight: 600;
-    padding-top: 20px;
+  color: #333333;
+  font-weight: 600;
+  padding-top: 20px;
 }
 
 .totalSpent {
-    float: left;
+  float: left;
 }
-    .spent {
-        color: #999999;
-        font-weight: 400;
-    }
+.spent {
+  color: #999999;
+  font-weight: 400;
+}
 
 .budgetAmount {
-    float: right;
+  float: right;
 }
 
 /* Nav */
 nav {
-    clear: both;
-    padding: 55px 0 35px 0;
+  clear: both;
+  padding: 55px 0 35px 0;
 }
 
 nav button {
-    font-size: 20px;
-    color: #999999;
-    text-decoration: none;
-    background: none;
-    padding: 0;
-    border: none;
-    margin: 0;
+  font-size: 20px;
+  color: #999999;
+  text-decoration: none;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
 }
 
 /* Add margin to middle nav button */
 nav button:nth-child(2) {
-    margin: 0 45px;
+  margin: 0 45px;
 }
-
 
 /****** Purchases ******/
 /* Purchases Parent container */
 .purchasesParent {
-    margin: 0 auto 30px auto;
+  margin: 0 auto 30px auto;
 }
 
 .purchase {
-    font-size: 18px;
-    padding: 24px 20px 0 20px;
-    border-bottom: 2px solid #f6f6f6;
-    word-wrap: break-word;
+  font-size: 18px;
+  padding: 24px 20px 0 20px;
+  border-bottom: 2px solid #f6f6f6;
+  word-wrap: break-word;
 }
-    /* Get rid of border bottom on last purchase div */
-    .purchases div:last-child {
-        border-bottom: none;
-    }
-
+/* Get rid of border bottom on last purchase div */
+.purchases div:last-child {
+  border-bottom: none;
+}
 
 .purchaseDelete {
-    text-align: right;
-    margin-top: -15px;
-    margin-right: -10px;
+  text-align: right;
+  margin-top: -15px;
+  margin-right: -10px;
 }
 
 .purchaseDelete button {
-    color: #cccccc;
-    font-size: 20px;
-    font-weight: 600;
-    border: none;
-    background: none;
+  color: #cccccc;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  background: none;
 }
 
 .purchaseDate {
-    color: #999999;
-    margin-bottom: 5px;
+  color: #999999;
+  margin-bottom: 5px;
 }
 
 .purchaseLocation {
-    font-weight: 600;
-    margin-bottom: 5px;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .purchaseDescription {
-    max-width: 300px;
-    margin-bottom: 5px; 
+  max-width: 300px;
+  margin-bottom: 5px;
 }
 
 .purchaseCost {
-    font-size: 18px;
-    text-align: right;
-    font-weight: 600;
-    position: relative;
-    top: -40px;
+  font-size: 18px;
+  text-align: right;
+  font-weight: 600;
+  position: relative;
+  top: -40px;
 }
 
 /* New Purchase button */
 .purchasesParent .pinkButton {
-    margin: 32px auto 80px auto;
+  margin: 32px auto 80px auto;
 }
 
 /****** New Purchase ******/
 /* New Purchase container */
 .newPurchase {
-    margin: 0 auto 80px auto;
+  margin: 0 auto 80px auto;
 }
 
 /* Title */
 .newPurchase h1 {
-    font-size: 30px;
-    font-weight: 600;
-    padding: 40px 0;
-    text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 40px 0;
+  text-align: center;
 }
 
 .newPurchase input {
-    width: 300px;
-    display: block;
-    font-size: 18px;
-    color: #333333;
-    padding: 5px;
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
-    margin: 10px 0 30px 50px;
+  width: 300px;
+  display: block;
+  font-size: 18px;
+  color: #333333;
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin: 10px 0 30px 50px;
 }
 
 .newPurchase label {
-    display: block;
-    color: #666666;
+  display: block;
+  color: #666666;
 }
 
 .newPurchase label,
 .newPurchase .dollarSign {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
 .newPurchase .cost {
-    width: 100px;
-    display: inline-block;
-    margin-left: 10px;
+  width: 100px;
+  display: inline-block;
+  margin-left: 10px;
 }
 
 .newPurchase .costLabel {
-    display: block;
+  display: block;
 }
 
 .newPurchase .todaysMonth {
-    display: inline;
-    padding: 0 0 0 50px;
+  display: inline;
+  padding: 0 0 0 50px;
 }
 
 .newPurchase .day {
-    width: 40px;
-    display: inline;
-    margin-left: 10px;
-    margin-right: 10px;
+  width: 40px;
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .newPurchase .pinkButton {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .noPurchases {
-    color: #999999;
-    text-align: center;
-    padding: 20px 0 20px 0;
+  color: #999999;
+  text-align: center;
+  padding: 20px 0 20px 0;
 }
-
 
 /****** Budget ******/
 /* Budget container */
 .budget {
-    text-align: center;
-    margin: 0 auto 80px auto;
+  text-align: center;
+  margin: 0 auto 80px auto;
 }
 
 .budget h1 {
-    font-size: 30px;
-    font-weight: 600;
-    padding-top: 30px;
-    margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 600;
+  padding-top: 30px;
+  margin-bottom: 10px;
 }
 
 .budget p {
-    font-size: 18px;
-    color: #999999;
-    margin-bottom: 30px;
+  font-size: 18px;
+  color: #999999;
+  margin-bottom: 30px;
 }
 
 .budget .dollarSign {
-    font-size: 20px;
-    padding-right: 5px;
+  font-size: 20px;
+  padding-right: 5px;
 }
 
 .budget label {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .budget input {
-    width: 230px;
-    font-size: 24px;
-    color: #333333;
-    padding: 5px;
-    border: 1px solid #e6e6e6;
-    margin-bottom: 50px;
+  width: 230px;
+  font-size: 24px;
+  color: #333333;
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 50px;
 }
-
-
 
 /***********
 Mobile Styles
 *************/
 @media only screen and (max-width: 600px) {
+  /* Containers */
+  .auth,
+  .header,
+  .spending,
+  .budget,
+  .purchasesParent,
+  .purchases,
+  .newPurchase {
+    width: 300px;
+  }
 
-    /* Containers */
-    .auth,
-    .header,
-    .spending,
-    .budget,
-    .purchasesParent,
-    .purchases,
-    .newPurchase {
-        width: 300px;
-    }
+  .pinkButton {
+    width: 300px;
+  }
 
-    .pinkButton {
-        width: 300px;
-    }
+  .auth input {
+    width: 280px;
+  }
 
-    .auth input {
-        width: 280px;
-    }
+  .header {
+    margin-top: 45px;
+  }
 
-    .header {
-        margin-top: 45px;
-    }
+  nav button {
+    font-size: 18px;
+  }
 
-    nav button {
-        font-size: 18px;
-    }
+  /* Adjust margin around middle nav button */
+  nav button:nth-child(2) {
+    margin: 0 30px;
+  }
 
-    /* Adjust margin around middle nav button */
-    nav button:nth-child(2) {
-        margin: 0 30px;
-    }
+  .newPurchase input {
+    background: white;
+    width: 200px;
+  }
 
-    .newPurchase input {
-        background: white;
-        width: 200px;
-    }
-
-    .purchaseDescription {
-        max-width: 200px;
-    }
-
+  .purchaseDescription {
+    max-width: 200px;
+  }
 }
