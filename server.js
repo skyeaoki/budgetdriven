@@ -20,8 +20,17 @@ app.use(bodyParser.json());
 // Connect to MongoDB
 mongoose
   .connect(
-    process.env.MONGOLAB_BLACK_URI || 'mongodb://localhost:27017/budgetdriven', // fallback for development
-    { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true }
+    // In production use Mongo URI from environment
+    process.env.NODE_ENV == 'production'
+      ? process.env.MONGOLAB_BLACK_URI
+      : // In development connect to localhost
+        'mongodb://localhost:27017/budgetdriven',
+    {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+      useUnifiedTypology: true
+    }
   )
   .then(() => console.log('MongoDB successfully connected'))
   .catch(err => console.log(err));
