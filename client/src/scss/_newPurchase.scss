@@ -1,0 +1,78 @@
+/****** New Purchase ******/
+/* New Purchase container */
+.new {
+  display: block;
+  margin: 0 auto 80px auto;
+}
+
+.new__form {
+  @include whiteContainer();
+  padding-top: 50px;
+  margin: 0 auto;
+}
+
+.new__title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.new__input {
+  display: block;
+  width: 300px;
+  color: #333333;
+  font-size: 18px;
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin: 10px 0 30px 50px;
+}
+
+.new__label {
+  display: block;
+  color: #666666;
+  margin-left: 50px;
+}
+
+/* For small screens */
+@media screen and (max-width: 600px) {
+  .new__form {
+    width: 300px;
+  }
+
+  .new__input {
+    max-width: 200px;
+    margin: 10px auto 30px auto;
+  }
+}
+
+.new__currency {
+  @include boldAndPink();
+  margin-left: 50px;
+}
+
+
+.new__cost {
+  width: 100px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.new__costLabel {
+  display: block;
+}
+
+.new__month {
+  display: inline;
+  padding: 0 0 0 50px;
+}
+
+.new__day {
+  display: inline-block;
+  width: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+

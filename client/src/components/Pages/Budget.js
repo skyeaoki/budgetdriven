@@ -49,13 +49,14 @@ class Budget extends React.Component {
   render() {
     return (
       <div className="budget">
-        <h1>Budget</h1>
-        <p>Set your monthly spending budget.</p>
+        <h1 className="budget__title">Budget</h1>
+        <p className="budget__subtitle">Set your monthly spending budget.</p>
         <form onSubmit={this.handleSubmit}>
-          <label className="dollarSign" htmlFor="budgetAmount">
+          <label className="budget__currency" htmlFor="budgetAmount">
             $
           </label>
           <input
+            className="budget__input"
             onChange={this.onBudgetChange}
             type="number"
             id="budgetAmount"

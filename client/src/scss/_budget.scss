@@ -1,0 +1,42 @@
+/****** Budget ******/
+.budget {
+  @include whiteContainer();
+  width: 425px;
+  text-align: center;
+  padding-top: 35px;
+  margin: 0 auto 80px auto;
+}
+
+.budget__title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.budget__subtitle {
+  font-size: 18px;
+  color: $grey;
+  margin-bottom: 30px;
+}
+
+.budget__currency {
+  @include boldAndPink();
+  font-size: 20px;
+  padding-right: 5px;
+}
+
+.budget__input {
+  width: 230px;
+  color: $black;
+  font-size: 24px;
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 50px;
+}
+
+// For small screens
+@media only screen and (max-width: 600px) {
+  .budget {
+    width: 300px;
+  }
+}

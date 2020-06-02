@@ -1,0 +1,17 @@
+// Colors
+$pink: #ff66b3;
+$black: #333333;
+$grey: #999999;
+
+// Mixins
+@mixin whiteContainer {
+  width: 425px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
+}
+
+@mixin boldAndPink {
+  color: $pink;
+  font-weight: 600;
+}

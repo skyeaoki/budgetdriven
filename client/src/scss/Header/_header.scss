@@ -1,0 +1,28 @@
+/****** Header ******/
+/* Header container */
+.header {
+  width: 425px;
+  text-align: center;
+  font-size: 20px;
+  color: #999999;
+  margin: 75px auto 10px auto;
+}
+
+.greetingContainer {
+  margin-bottom: 30px;
+}
+
+.greeting {
+  margin-bottom: 10px;
+}
+
+.greeting__firstName,
+.greeting__date {
+  @include boldAndPink;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    width: 300px;
+  }
+}

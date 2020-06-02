@@ -1,0 +1,67 @@
+/*** FONT ***/
+body,
+main,
+button,
+a,
+form,
+input,
+select,
+textarea,
+::placeholder {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  color: #333333;
+}
+
+::placeholder {
+  color: #999;
+}
+
+/*** PAGE BACKGROUND ***/
+body {
+  background: #f6f6f6;
+}
+
+/*** BUTTONS ***/
+.primaryButton {
+    display: block;
+    width: 425px;
+    background: #ff66b3;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 15px 0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
+    margin: 0 auto;
+  }
+
+.signOut {
+text-align: center;
+background: none;
+color: #999999;
+font-size: 18px;
+text-decoration: underline;
+border: none;
+}
+
+@media only screen and (max-width: 600px) {
+.primaryButton {
+    width: 300px;
+}
+}
+
+/*** FOOTER ***/
+.footer {
+text-align: center;
+margin: 50px auto;
+}
+
+/*** ERROR MESSAGES ***/
+.error {
+    color: #ff4d4d;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+  

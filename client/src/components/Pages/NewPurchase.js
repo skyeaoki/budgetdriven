@@ -66,16 +66,16 @@ class NewPurchase extends React.Component {
 
   render() {
     return (
-      <div className="newPurchase">
-        <h1>New Purchase</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="cost" className="costLabel">
+      <div className="new">
+        <h1 className="new__title">New Purchase</h1>
+        <form className="new__form" onSubmit={this.handleSubmit}>
+          <label className="new__label new__costLabel" htmlFor="cost">
             Cost
           </label>
-          <span className="dollarSign">$</span>
+          <span className="new__currency">$</span>
           <input
+            className="new__cost new__input"
             onChange={this.handleInputChange}
-            className="cost"
             type="number"
             id="cost"
             name="cost"
@@ -87,8 +87,9 @@ class NewPurchase extends React.Component {
           />
           <br />
 
-          <label htmlFor="location">Location</label>
+          <label className="new__label" htmlFor="location">Location</label>
           <input
+            className="new__input"
             onChange={this.handleInputChange}
             type="text"
             id="location"
@@ -97,8 +98,9 @@ class NewPurchase extends React.Component {
             required
           />
 
-          <label htmlFor="description">Description</label>
+          <label className="new__label" htmlFor="description">Description</label>
           <input
+            className="new__input"
             onChange={this.handleInputChange}
             type="text"
             id="description"
@@ -107,11 +109,11 @@ class NewPurchase extends React.Component {
             required
           />
 
-          <label htmlFor="date">Date: </label>
-          <span className="todaysMonth">{this.state.todaysMonth}</span>
+          <label className="new__label" htmlFor="date">Date: </label>
+          <span className="new__month">{this.state.todaysMonth}</span>
           <input
+            className="new__input new__day"
             onChange={this.handleInputChange}
-            className="day"
             type="number"
             id="day"
             name="day"
@@ -120,13 +122,13 @@ class NewPurchase extends React.Component {
             defaultValue={this.state.todaysDay}
             required
           />
-          <span className="todaysYear">2019</span>
-          <button type="submit" className="primaryButton">
+          <span className="new__year">2019</span>
+          <button className="new__submit primaryButton" type="submit" >
             Submit
           </button>
         </form>
         {// Error Messages
-        this.state.errors.length > 0 &&
+          this.state.errors.length > 0 &&
           this.state.errors.map((error, i) => {
             return (
               <p className="error" key={i}>

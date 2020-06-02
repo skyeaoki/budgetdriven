@@ -1,0 +1,53 @@
+.progress {
+  margin-bottom: 55px;
+}
+
+.progress__barContainer {
+  height: 7px;
+  position: relative;
+  background: #d6d6d6;
+  border-radius: 5px;
+}
+
+.progress__bar {
+  display: block;
+  height: 100%;
+  background-color: $pink;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.progress__amounts {
+  color: $black;
+  font-weight: 600;
+  padding-top: 20px;
+}
+
+.progress__totalSpent {
+  float: left;
+}
+.progress__spent {
+  color: $grey;
+  font-weight: 400;
+}
+
+.progress__budget {
+  float: right;
+}
+
+.progress__leftToSpend {
+  font-size: 48px;
+  font-weight: 700;
+  color: $black;
+  margin-bottom: 30px;
+}
+
+.progress__currency {
+  position: relative;
+  top: -5px;
+  color: $pink;
+  font-size: 24px;
+  font-weight: 700;
+  padding-right: 10px;
+}

@@ -1,0 +1,51 @@
+.auth {
+  text-align: center;
+  margin: 10% auto 0 auto;
+}
+
+.auth__logo {
+  width: 250px;
+  margin-bottom: 60px;
+}
+
+.auth__input {
+  display: block;
+  width: 405px;
+  color: #333;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 0 auto 25px auto;
+}
+
+.auth__submitButton {
+  margin-top: 25px;
+}
+
+/* Message for navigating between sign up and sign in */
+.auth__nav {
+  padding: 40px 0;
+}
+
+/* Sign up/ sign in link */
+.auth__navButton {
+  background: none;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ff66b3;
+  text-decoration: none;
+  border: none;
+}
+
+
+/* For small screens */
+@media screen and (max-width: 600px) {
+  .auth {
+    width: 300px;
+  }
+
+  .auth__input {
+    width: 275px;
+  }
+}

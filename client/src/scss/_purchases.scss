@@ -1,0 +1,72 @@
+/****** Purchases ******/
+.purchases {
+  @include whiteContainer();
+  margin: 0 auto 30px auto;
+}
+
+/* For small screens */
+@media screen and (max-width: 600px) {
+  .purchases {
+    width: 300px;
+  }
+}
+
+.purchase {
+  font-size: 18px;
+  padding: 24px 20px 0 20px;
+  border-bottom: 2px solid #f6f6f6;
+  word-wrap: break-word;
+}
+
+/* Get rid of border bottom on last purchase div */
+.purchases div:last-child {
+  border-bottom: none;
+}
+
+.purchase__delete {
+  text-align: right;
+  margin-top: -15px;
+  margin-right: -10px;
+}
+
+.purchase__deleteButton {
+  color: #cccccc;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  background: none;
+}
+
+.purchase__date {
+  color: #999999;
+  margin-bottom: 5px;
+}
+
+.purchase__location {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.purchase__description {
+  max-width: 300px;
+  margin-bottom: 5px;
+}
+
+.purchase__cost {
+  font-size: 18px;
+  text-align: right;
+  font-weight: 600;
+  position: relative;
+  top: -40px;
+}
+
+/* New Purchase button */
+.purchases__newButton {
+  margin: 32px auto 80px auto;
+}
+
+.purchases__none {
+  color: $grey;
+  text-align: center;
+  padding: 20px;
+}

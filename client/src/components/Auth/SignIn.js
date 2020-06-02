@@ -11,7 +11,7 @@ class SignIn extends React.Component {
 
   handleInputChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
@@ -20,7 +20,7 @@ class SignIn extends React.Component {
     e.preventDefault();
     axios
       .post('/api/auth/signIn', {
-        // Post email in lowercase to prevent non-unique emails
+        // Submit email in lowercase to prevent non-unique emails
         email: this.state.email.toLowerCase(),
         password: this.state.password
       })
@@ -39,42 +39,44 @@ class SignIn extends React.Component {
   render() {
     return (
       <div className="auth">
-        <img className="logo" src="logo.png" alt="logo" />
+        <img className="auth__logo" src="logo.png" alt="logo" />
         <form onSubmit={this.handleSubmit}>
           <input
+            className="auth__input"
             onChange={this.handleInputChange}
             type="email"
-            id="email"
             name="email"
             placeholder="Email"
             maxLength="80"
             required
           />
           <input
+            className="auth__input"
             onChange={this.handleInputChange}
             type="password"
-            id="password"
             name="password"
             placeholder="Password"
             maxLength="80"
             required
           />
           {// Error Messages
-          this.state.errors.length > 0 &&
+            this.state.errors.length > 0 &&
             this.state.errors.map((error, i) => {
               return (
-                <p className="error" key={i}>
+                <p className="auth__error error" key={i}>
                   {error}
                 </p>
               );
             })}
-          <button type="submit" className="primaryButton">
+          <button className="auth__submitButton primaryButton" type="submit">
             Sign In
           </button>
         </form>
-        <p className="message">
+        <p className="auth__nav">
           Don't have an account yet?{' '}
-          <button onClick={this.props.navigate}>Sign up</button>
+          <button className="auth__navButton" onClick={this.props.navigate}>
+            Sign up
+          </button>
         </p>
       </div>
     );
