@@ -23,6 +23,10 @@ body {
 }
 
 /*** BUTTONS ***/
+button {
+  outline: none;
+}
+
 .primaryButton {
     display: block;
     width: 425px;
@@ -35,7 +39,7 @@ body {
     border-radius: 10px;
     box-shadow: 0px 3px 5px rgba(230, 230, 230, 1);
     margin: 0 auto;
-  }
+}
 
 .signOut {
 text-align: center;
@@ -47,9 +51,9 @@ border: none;
 }
 
 @media only screen and (max-width: 600px) {
-.primaryButton {
-    width: 300px;
-}
+  .primaryButton {
+      width: 300px;
+  }
 }
 
 /*** FOOTER ***/
