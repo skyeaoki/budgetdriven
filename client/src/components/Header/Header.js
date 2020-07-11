@@ -13,7 +13,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { leftToSpend, totalSpent, budgetAmount, navigate, userFirstName } = this.props;
+    const { leftToSpend, totalSpent, budgetAmount, navigate, userFirstName, progressBar } = this.props;
     const { todaysDate, currentMonth } = this.state;
 
     return (
@@ -29,6 +29,7 @@ class Header extends React.Component {
           leftToSpend={leftToSpend}
           totalSpent={totalSpent}
           budgetAmount={budgetAmount}
+          progressBar={progressBar}
         />
         <MainNav navigate={navigate} />
       </div>

@@ -13,6 +13,10 @@
   margin: 0;
 }
 
+.mainNav__button:hover {
+  color: $pink;
+}
+
 /* Add margin to middle nav button */
 .mainNav__button:nth-child(2) {
   margin: 0 45px;

@@ -2,9 +2,9 @@ import React from 'react';
 class Progress extends React.Component {
   render() {
     const { leftToSpend, progressBar, totalSpent, budgetAmount } = this.props;
-
+    console.log(progressBar);
     return (
-      <div class="progress">
+      <div className="progress">
         <p className="progress__leftToSpend">
           <span className="progress__currency">$</span>
           {leftToSpend && leftToSpend.toFixed(2)}

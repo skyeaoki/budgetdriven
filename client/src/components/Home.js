@@ -90,16 +90,18 @@ class Home extends React.Component {
   // };
 
   updateBudget = amount => {
-    const { budgetAmount, totalSpent } = this.state;
     this.setState({
       budgetAmount: amount
     }, () => {
-      this.setState({
-        // Update progress bar
-        progressBar: totalSpent <= budgetAmount ? totalSpent * 100 / budgetAmount : 100,
-        // Update left to spend amount
-        leftToSpend: totalSpent <= budgetAmount ? this.state.budgetAmount - totalSpent : 0,
-        page: "Purchases"
+      this.setState(({ totalSpent, budgetAmount }) => {
+        console.log(totalSpent * 100 / budgetAmount);
+        return {
+          // Update progress bar
+          progressBar: totalSpent <= budgetAmount ? totalSpent * 100 / budgetAmount : 100,
+          // Update left to spend amount
+          leftToSpend: totalSpent <= budgetAmount ? budgetAmount - totalSpent : 0,
+          page: "Purchases"
+        }
       })
     });
   }
